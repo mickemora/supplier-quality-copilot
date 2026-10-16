@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0002
+Date detected: 2025-05-04
+Supplier: Pinnacle Harness Assemblies (SUP-0145), Huntsville, AL, tier 1
+Commodity: cable assemblies
+Part number: CA-70388-05 - Umbilical cable assembly
+Program: Program ATLAS
+Detection point: in-process
+Defect code: FOD-01
+Quantity inspected / nonconforming: 159 / 53
+Severity: critical
+Reported by: J. Alvarez
+
+DESCRIPTION OF NONCONFORMANCE
+Foreign object debris (wire clippings) found inside connector backshell.
+
+CONTAINMENT
+Opened and inspected all backshells in the lot.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Foreign object debris (wire clippings) found inside connector backshell.
+D3 Containment: Opened and inspected all backshells in the lot.
+D4 Root cause: Assembler did not perform the FOD inspection before closing the backshell; workstation lacked a FOD mat.
+D5 Permanent corrective action: Added FOD inspection stamp before backshell closure and retrained assemblers.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-06-28.
+
+Disposition: rework
+Status: CLOSED

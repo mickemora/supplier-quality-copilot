@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0005
+Date detected: 2025-05-12
+Supplier: Skyline Composites (SUP-0455), Fort Worth, TX, tier 1
+Commodity: composites
+Part number: CM-33015-01 - Radome panel, quartz/cyanate ester
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: MAT-11
+Quantity inspected / nonconforming: 66 / 11
+Severity: critical
+Reported by: S. Okafor
+
+DESCRIPTION OF NONCONFORMANCE
+Ultrasonic C-scan shows a disbond along the panel edge.
+
+CONTAINMENT
+Quarantine of panels from the same cure load.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Ultrasonic C-scan shows a disbond along the panel edge.
+D3 Containment: Quarantine of panels from the same cure load.
+D4 Root cause: Lagging thermocouple caused an early start of the cure dwell; the laminate was under-cured.
+D5 Permanent corrective action: Lagging thermocouple now controls dwell start; cure records reviewed before release.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-06-18.
+
+Disposition: scrap
+Status: CLOSED

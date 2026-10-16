@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0015
+Date detected: 2026-05-27
+Supplier: Pecos Aero Machining (SUP-0340), Odessa, TX, tier 2
+Commodity: machined parts
+Part number: MP-60311-09 - Actuator housing, 7075-T73
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: DOC-02
+Quantity inspected / nonconforming: 49 / 7
+Severity: major
+Reported by: J. Alvarez
+
+DESCRIPTION OF NONCONFORMANCE
+Hole pattern matches obsolete drawing revision.
+
+CONTAINMENT
+Lot rejected and returned; replacement parts expedited.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D2 Problem: Hole pattern matches obsolete drawing revision.
+D3 Containment: Lot rejected and returned; replacement parts expedited.
+D4 Root cause: Programmer used an uncontrolled local drawing file that was one revision behind.
+D5 Permanent corrective action: Removed local drawing copies; CNC programs now reference the controlled revision number checked at first article.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-07-19.
+
+Disposition: return to supplier
+Status: CLOSED

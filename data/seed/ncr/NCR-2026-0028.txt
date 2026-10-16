@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0028
+Date detected: 2026-09-02
+Supplier: Lone Star Circuit Works (SUP-0219), Plano, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program BRAVO-7
+Detection point: final test
+Defect code: ESD-05
+Quantity inspected / nonconforming: 24 / 4
+Severity: major
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Board failed functional test; ESD damage on input buffer.
+
+CONTAINMENT
+Retest of all boards from the same kit date.
+
+INVESTIGATION
+Suspected root cause (investigation in progress): Relative humidity in the kitting area fell below 30% and ionizers were not operating.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0020
+Date detected: 2025-10-01
+Supplier: Lone Star Circuit Works (SUP-0219), Plano, TX, tier 1
+Commodity: pcba
+Part number: PA-90412-01 - Processor card assembly
+Program: Program DELTA RISE
+Detection point: final test
+Defect code: ESD-05
+Quantity inspected / nonconforming: 328 / 41
+Severity: major
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Intermittent failure traced to ESD damage on an input IC.
+
+CONTAINMENT
+Retest of all boards from the same kit date.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Intermittent failure traced to ESD damage on an input IC.
+D3 Containment: Retest of all boards from the same kit date.
+D4 Root cause: Ionizer failure in the kitting area combined with low humidity; wrist strap checks were not logged.
+D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-11-13.
+
+Disposition: return to supplier
+Status: CLOSED

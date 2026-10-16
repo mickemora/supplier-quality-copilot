@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0013
+Date detected: 2026-05-09
+Supplier: Red River Castings (SUP-0301), Texarkana, TX, tier 2
+Commodity: castings
+Part number: CS-21044-00 - Aluminum A356 housing casting
+Program: Program DELTA RISE
+Detection point: in-process
+Defect code: MAT-03
+Quantity inspected / nonconforming: 69 / 23
+Severity: major
+Reported by: R. Patel
+
+DESCRIPTION OF NONCONFORMANCE
+Subsurface porosity revealed after machining sealing surface.
+
+CONTAINMENT
+X-ray of all castings in WIP; 6 rejected.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D2 Problem: Subsurface porosity revealed after machining sealing surface.
+D3 Containment: X-ray of all castings in WIP; 6 rejected.
+D4 Root cause: Melt degassing time was shortened during a furnace rebuild and hydrogen levels were not verified with reduced pressure testing.
+D5 Permanent corrective action: Reinstated degassing cycle with density index check per heat; added reduced pressure test records to CoC.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-07-07.
+
+Disposition: return to supplier
+Status: CLOSED

@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0001
+Date detected: 2026-01-11
+Supplier: Brazos Electronics Assembly (SUP-0203), Waco, TX, tier 1
+Commodity: pcba
+Part number: PA-90412-01 - Processor card assembly
+Program: Program CORSAIR
+Detection point: final test
+Defect code: ESD-05
+Quantity inspected / nonconforming: 260 / 52
+Severity: major
+Reported by: R. Patel
+
+DESCRIPTION OF NONCONFORMANCE
+Board failed functional test; ESD damage on input buffer.
+
+CONTAINMENT
+Retest of all boards from the same kit date.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Board failed functional test; ESD damage on input buffer.
+D3 Containment: Retest of all boards from the same kit date.
+D4 Root cause: Relative humidity in the kitting area fell below 30% and ionizers were not operating.
+D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-02-13.
+
+Disposition: return to supplier
+Status: CLOSED

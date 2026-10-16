@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0039
+Date detected: 2026-10-14
+Supplier: Mesa Contact Systems (SUP-0112), Mesa, AZ, tier 1
+Commodity: connectors
+Part number: CN-44871-03 - Circular connector, 19-pin, gold-plated contacts
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: FIN-12
+Quantity inspected / nonconforming: 192 / 48
+Severity: critical
+Reported by: R. Patel
+
+DESCRIPTION OF NONCONFORMANCE
+Thin gold plating on socket contacts (avg 22 microinches; spec 50 min) found at receiving XRF check.
+
+CONTAINMENT
+Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+INVESTIGATION
+Root cause: Suspected low gold concentration in the plating bath at sub-tier Coastal Finishing Co.; bath analysis frequency was reduced after a volume ramp. Investigation open.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

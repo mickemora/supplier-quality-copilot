@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0037
+Date detected: 2026-10-09
+Supplier: Ardent Interconnect (SUP-0107), Tempe, AZ, tier 1
+Commodity: connectors
+Part number: CN-51220-11 - Micro-D connector, 25-position
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: FIN-12
+Quantity inspected / nonconforming: 176 / 44
+Severity: critical
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Contacts measured thin on gold: 15-30 microinches vs 50 minimum; nickel underplate exposed at mating end.
+
+CONTAINMENT
+Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+INVESTIGATION
+Suspected root cause (investigation in progress): Root cause traced to the sub-tier plating source, Coastal Finishing Co.: depleted gold bath (titration weekly, not per shift) and increased rack loading reduced deposit thickness.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

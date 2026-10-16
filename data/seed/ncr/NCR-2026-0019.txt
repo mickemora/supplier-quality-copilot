@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0019
+Date detected: 2026-06-21
+Supplier: Brazos Electronics Assembly (SUP-0203), Waco, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program DELTA RISE
+Detection point: in-process
+Defect code: WRK-15
+Quantity inspected / nonconforming: 77 / 11
+Severity: major
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Conformal coating voids and bubbles near connector headers.
+
+CONTAINMENT
+Rework of coating on the lot.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Conformal coating voids and bubbles near connector headers.
+D3 Containment: Rework of coating on the lot.
+D4 Root cause: Spray coating viscosity drifted high and the cure ramp was too fast, trapping solvent.
+D5 Permanent corrective action: Viscosity check per shift and slower cure ramp added to the process sheet.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-08-09.
+
+Disposition: rework
+Status: CLOSED

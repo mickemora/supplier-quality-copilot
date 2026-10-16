@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0032
+Date detected: 2025-12-15
+Supplier: Red River Castings (SUP-0301), Texarkana, TX, tier 2
+Commodity: castings
+Part number: CS-21044-00 - Aluminum A356 housing casting
+Program: Program ATLAS
+Detection point: in-process
+Defect code: MAT-03
+Quantity inspected / nonconforming: 108 / 27
+Severity: major
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+Gas porosity exposed on O-ring groove after finish machining.
+
+CONTAINMENT
+X-ray of all castings in WIP; 6 rejected.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Gas porosity exposed on O-ring groove after finish machining.
+D3 Containment: X-ray of all castings in WIP; 6 rejected.
+D4 Root cause: Rotary degassing cycle was cut short after the furnace rebuild; density index checks were not performed.
+D5 Permanent corrective action: Reinstated degassing cycle with density index check per heat; added reduced pressure test records to CoC.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-01-24.
+
+Disposition: return to supplier
+Status: CLOSED

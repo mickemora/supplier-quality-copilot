@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0036
+Date detected: 2026-10-08
+Supplier: Pinnacle Harness Assemblies (SUP-0145), Huntsville, AL, tier 1
+Commodity: cable assemblies
+Part number: CA-70215-02 - Harness assembly, guidance section
+Program: Program DELTA RISE
+Detection point: final test
+Defect code: WRK-04
+Quantity inspected / nonconforming: 119 / 17
+Severity: critical
+Reported by: M. Brennan
+
+DESCRIPTION OF NONCONFORMANCE
+Contact pull test failure on crimped contacts.
+
+CONTAINMENT
+All contacts crimped since the tool swap were pull-tested.
+
+INVESTIGATION
+Suspected root cause (investigation in progress): Crimp tool die was the wrong size for the contact after a tool swap.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

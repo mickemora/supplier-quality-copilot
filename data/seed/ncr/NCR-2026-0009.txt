@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0009
+Date detected: 2026-02-07
+Supplier: Brazos Electronics Assembly (SUP-0203), Waco, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program BRAVO-7
+Detection point: final test
+Defect code: SLD-08
+Quantity inspected / nonconforming: 72 / 24
+Severity: critical
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+X-ray shows BGA solder voiding of 32-40% on the processor package (limit 25%).
+
+CONTAINMENT
+100% X-ray of BGAs on all boards built since the paste change; failing boards reworked.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: X-ray shows BGA solder voiding of 32-40% on the processor package (limit 25%).
+D3 Containment: 100% X-ray of BGAs on all boards built since the paste change; failing boards reworked.
+D4 Root cause: Solder paste lot changed to a new formulation and the reflow profile was not re-validated; soak time was too short for the new flux to outgas.
+D5 Permanent corrective action: Paste lot or formulation changes now trigger a reflow profile re-validation with X-ray first article; soak extended by 20 seconds.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-03-25.
+
+Disposition: rework
+Status: CLOSED

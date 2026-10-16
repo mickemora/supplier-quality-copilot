@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0011
+Date detected: 2026-03-27
+Supplier: Lone Star Circuit Works (SUP-0219), Plano, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program ATLAS
+Detection point: final test
+Defect code: ESD-05
+Quantity inspected / nonconforming: 138 / 23
+Severity: major
+Reported by: M. Brennan
+
+DESCRIPTION OF NONCONFORMANCE
+Intermittent failure traced to ESD damage on an input IC.
+
+CONTAINMENT
+Retest of all boards from the same kit date.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Intermittent failure traced to ESD damage on an input IC.
+D3 Containment: Retest of all boards from the same kit date.
+D4 Root cause: Ionizer failure in the kitting area combined with low humidity; wrist strap checks were not logged.
+D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-05-12.
+
+Disposition: return to supplier
+Status: CLOSED

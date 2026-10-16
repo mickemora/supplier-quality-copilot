@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0027
+Date detected: 2026-08-23
+Supplier: Pecos Aero Machining (SUP-0340), Odessa, TX, tier 2
+Commodity: machined parts
+Part number: MP-60498-02 - Bulkhead ring
+Program: Program DELTA RISE
+Detection point: receiving inspection
+Defect code: DOC-02
+Quantity inspected / nonconforming: 360 / 60
+Severity: major
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Parts machined to superseded drawing revision C instead of revision D.
+
+CONTAINMENT
+Lot rejected and returned; replacement parts expedited.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D2 Problem: Parts machined to superseded drawing revision C instead of revision D.
+D3 Containment: Lot rejected and returned; replacement parts expedited.
+D4 Root cause: Supplier's document control pulled the drawing from a local copy instead of the controlled portal.
+D5 Permanent corrective action: Removed local drawing copies; CNC programs now reference the controlled revision number checked at first article.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-10-06.
+
+Disposition: return to supplier
+Status: CLOSED

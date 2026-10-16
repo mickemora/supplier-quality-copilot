@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0031
+Date detected: 2026-09-13
+Supplier: Ironclad Fastener Supply (SUP-0410), Tulsa, OK, tier 2
+Commodity: fasteners
+Part number: FS-11720-16 - Hi-lok pin, titanium
+Program: Program CORSAIR
+Detection point: receiving inspection
+Defect code: DOC-06
+Quantity inspected / nonconforming: 168 / 42
+Severity: minor
+Reported by: S. Okafor
+
+DESCRIPTION OF NONCONFORMANCE
+Certificate of conformance missing lot traceability to mill heat.
+
+CONTAINMENT
+Lot held until traceable certifications were provided.
+
+INVESTIGATION
+Suspected root cause (investigation in progress): Distributor changed its CoC template and dropped the heat lot field.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

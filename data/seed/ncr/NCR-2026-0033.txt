@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0033
+Date detected: 2026-09-19
+Supplier: Caddo Precision Machining (SUP-0322), Shreveport, LA, tier 1
+Commodity: machined parts
+Part number: MP-60498-02 - Bulkhead ring
+Program: Program BRAVO-7
+Detection point: receiving inspection
+Defect code: DIM-21
+Quantity inspected / nonconforming: 57 / 19
+Severity: major
+Reported by: K. Nguyen
+
+DESCRIPTION OF NONCONFORMANCE
+Bore drifted oversize over the course of the production run.
+
+CONTAINMENT
+Sorted lot with air gauging; oversize parts rejected.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Bore drifted oversize over the course of the production run.
+D3 Containment: Sorted lot with air gauging; oversize parts rejected.
+D4 Root cause: Thermal compensation turned off after a controller software update, letting the bore grow during long runs.
+D5 Permanent corrective action: Re-enabled thermal compensation and added an in-process bore check every 10 parts.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-10-25.
+
+Disposition: return to supplier
+Status: CLOSED

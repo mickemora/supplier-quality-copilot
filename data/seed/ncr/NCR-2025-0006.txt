@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0006
+Date detected: 2025-05-16
+Supplier: Pinnacle Harness Assemblies (SUP-0145), Huntsville, AL, tier 1
+Commodity: cable assemblies
+Part number: CA-70388-05 - Umbilical cable assembly
+Program: Program BRAVO-7
+Detection point: final test
+Defect code: WRK-04
+Quantity inspected / nonconforming: 123 / 41
+Severity: critical
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+Contact pull test failure on crimped contacts.
+
+CONTAINMENT
+All contacts crimped since the tool swap were pull-tested.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Contact pull test failure on crimped contacts.
+D3 Containment: All contacts crimped since the tool swap were pull-tested.
+D4 Root cause: Crimp tool die was the wrong size for the contact after a tool swap.
+D5 Permanent corrective action: First-piece pull test required after any crimp tool change.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-06-28.
+
+Disposition: rework
+Status: CLOSED

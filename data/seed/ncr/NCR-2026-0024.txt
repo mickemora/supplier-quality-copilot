@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0024
+Date detected: 2026-07-09
+Supplier: Caddo Precision Machining (SUP-0322), Shreveport, LA, tier 1
+Commodity: machined parts
+Part number: MP-60311-09 - Actuator housing, 7075-T73
+Program: Program CORSAIR
+Detection point: receiving inspection
+Defect code: DIM-14
+Quantity inspected / nonconforming: 49 / 7
+Severity: major
+Reported by: S. Okafor
+
+DESCRIPTION OF NONCONFORMANCE
+Raised burrs found at the intersection of cross-drilled passages.
+
+CONTAINMENT
+100% re-inspection of stock with borescope; suspect lots quarantined.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Raised burrs found at the intersection of cross-drilled passages.
+D3 Containment: 100% re-inspection of stock with borescope; suspect lots quarantined.
+D4 Root cause: Operation 40 deburr step was removed during a routing update and the operator was not alerted.
+D5 Permanent corrective action: Restored the deburr operation to the routing with an inspection buyoff; routing changes now need quality sign-off.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-09-03.
+
+Disposition: return to supplier
+Status: CLOSED

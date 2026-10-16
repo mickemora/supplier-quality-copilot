@@ -1,0 +1,25 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0034
+Date detected: 2026-09-28
+Supplier: Lone Star Circuit Works (SUP-0219), Plano, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program ATLAS
+Detection point: final test
+Defect code: SLD-08
+Quantity inspected / nonconforming: 126 / 18
+Severity: critical
+Reported by: J. Alvarez
+
+DESCRIPTION OF NONCONFORMANCE
+Excessive BGA voiding (up to 38%) found by X-ray after a thermal cycling failure.
+
+CONTAINMENT
+100% X-ray of BGAs on all boards built since the paste change; failing boards reworked.
+
+INVESTIGATION
+Suspected root cause (investigation in progress): Reflow profile not re-profiled after switching solder paste lots; insufficient soak traps flux volatiles in BGA joints.
+
+Corrective action: pending supplier 8D response.
+Disposition: pending
+Status: OPEN

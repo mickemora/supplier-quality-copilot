@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0010
+Date detected: 2025-07-09
+Supplier: Ironclad Fastener Supply (SUP-0410), Tulsa, OK, tier 2
+Commodity: fasteners
+Part number: FS-11720-16 - Hi-lok pin, titanium
+Program: Program DELTA RISE
+Detection point: final test
+Defect code: MEA-07
+Quantity inspected / nonconforming: 342 / 57
+Severity: critical
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+Installed fasteners below minimum torque on audit.
+
+CONTAINMENT
+Re-torque audit of all assemblies built with the tool.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Installed fasteners below minimum torque on audit.
+D3 Containment: Re-torque audit of all assemblies built with the tool.
+D4 Root cause: Torque wrench used on the line was 4 months past calibration and read 12% high.
+D5 Permanent corrective action: Tool recalled and calibrated; calibration system now locks out expired tools at check-out.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-09-05.
+
+Disposition: rework
+Status: CLOSED

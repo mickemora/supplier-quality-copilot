@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0025
+Date detected: 2026-07-13
+Supplier: Ironclad Fastener Supply (SUP-0410), Tulsa, OK, tier 2
+Commodity: fasteners
+Part number: FS-11720-16 - Hi-lok pin, titanium
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: DOC-06
+Quantity inspected / nonconforming: 126 / 18
+Severity: minor
+Reported by: R. Patel
+
+DESCRIPTION OF NONCONFORMANCE
+Certificate of conformance missing lot traceability to mill heat.
+
+CONTAINMENT
+Lot held until traceable certifications were provided.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Certificate of conformance missing lot traceability to mill heat.
+D3 Containment: Lot held until traceable certifications were provided.
+D4 Root cause: Distributor changed its CoC template and dropped the heat lot field.
+D5 Permanent corrective action: Supplier added CoC field checklist; receiving now verifies heat traceability before acceptance.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-08-20.
+
+Disposition: pending
+Status: CLOSED

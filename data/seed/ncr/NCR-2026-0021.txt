@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0021
+Date detected: 2026-06-27
+Supplier: Pecos Aero Machining (SUP-0340), Odessa, TX, tier 2
+Commodity: machined parts
+Part number: MP-60498-02 - Bulkhead ring
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: DIM-21
+Quantity inspected / nonconforming: 424 / 53
+Severity: major
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+Bore diameter oversize by 0.0008 in. on parts machined late in shift.
+
+CONTAINMENT
+Sorted lot with air gauging; oversize parts rejected.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D2 Problem: Bore diameter oversize by 0.0008 in. on parts machined late in shift.
+D3 Containment: Sorted lot with air gauging; oversize parts rejected.
+D4 Root cause: Spindle thermal growth on a long run; the machine's thermal compensation was disabled after a control update.
+D5 Permanent corrective action: Re-enabled thermal compensation and added an in-process bore check every 10 parts.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-08-07.
+
+Disposition: return to supplier
+Status: CLOSED

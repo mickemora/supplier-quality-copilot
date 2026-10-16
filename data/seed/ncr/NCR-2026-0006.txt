@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0006
+Date detected: 2026-01-30
+Supplier: Lone Star Circuit Works (SUP-0219), Plano, TX, tier 1
+Commodity: pcba
+Part number: PA-90577-04 - Power conditioning board
+Program: Program BRAVO-7
+Detection point: in-process
+Defect code: WRK-15
+Quantity inspected / nonconforming: 352 / 44
+Severity: major
+Reported by: S. Okafor
+
+DESCRIPTION OF NONCONFORMANCE
+Coating voids around tall components and connector headers.
+
+CONTAINMENT
+Rework of coating on the lot.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Coating voids around tall components and connector headers.
+D3 Containment: Rework of coating on the lot.
+D4 Root cause: Coating material viscosity out of range and fast cure ramp trapped solvent bubbles.
+D5 Permanent corrective action: Viscosity check per shift and slower cure ramp added to the process sheet.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-03-07.
+
+Disposition: rework
+Status: CLOSED

@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0017
+Date detected: 2025-09-22
+Supplier: Red River Castings (SUP-0301), Texarkana, TX, tier 2
+Commodity: castings
+Part number: CS-21044-00 - Aluminum A356 housing casting
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: ENV-02
+Quantity inspected / nonconforming: 342 / 57
+Severity: minor
+Reported by: R. Patel
+
+DESCRIPTION OF NONCONFORMANCE
+Surface corrosion found on unpacked castings.
+
+CONTAINMENT
+Cleaned and re-inspected affected parts.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Surface corrosion found on unpacked castings.
+D3 Containment: Cleaned and re-inspected affected parts.
+D4 Root cause: Packaging step sealed parts with residual moisture and no desiccant.
+D5 Permanent corrective action: Added drying oven step and desiccant to the packaging instruction.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-11-07.
+
+Disposition: rework
+Status: CLOSED

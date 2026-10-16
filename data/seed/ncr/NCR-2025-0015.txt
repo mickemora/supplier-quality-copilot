@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0015
+Date detected: 2025-09-15
+Supplier: Pinnacle Harness Assemblies (SUP-0145), Huntsville, AL, tier 1
+Commodity: cable assemblies
+Part number: CA-70388-05 - Umbilical cable assembly
+Program: Program DELTA RISE
+Detection point: receiving inspection
+Defect code: FIN-12
+Quantity inspected / nonconforming: 176 / 44
+Severity: critical
+Reported by: M. Brennan
+
+DESCRIPTION OF NONCONFORMANCE
+Gold plating thickness on contacts measured 18-24 microinches against a 50 microinch minimum (XRF).
+
+CONTAINMENT
+Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D2 Problem: Gold plating thickness on contacts measured 18-24 microinches against a 50 microinch minimum (XRF).
+D3 Containment: Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+D4 Root cause: Plating is subcontracted to the tier-2 finisher Coastal Finishing Co. Gold bath chemistry drifted low because bath titration was done weekly instead of per shift, and the line ran a higher rack loading after a capacity increase.
+D5 Permanent corrective action: Coastal Finishing Co. moved to per-shift bath titration with control-chart limits and returned to qualified rack loading; supplier added XRF sampling (5 per lot) at its receiving before assembly.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2025-11-06.
+
+Disposition: return to supplier
+Status: CLOSED

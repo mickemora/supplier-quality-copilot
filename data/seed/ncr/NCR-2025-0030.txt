@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2025-0030
+Date detected: 2025-12-06
+Supplier: Mesa Contact Systems (SUP-0112), Mesa, AZ, tier 1
+Commodity: connectors
+Part number: CN-38016-07 - RF coaxial connector, SMA bulkhead
+Program: Program CORSAIR
+Detection point: receiving inspection
+Defect code: MRK-03
+Quantity inspected / nonconforming: 370 / 37
+Severity: minor
+Reported by: T. Lindqvist
+
+DESCRIPTION OF NONCONFORMANCE
+Laser marking dash number does not match the packing slip.
+
+CONTAINMENT
+Lot quarantined and re-marked after verification.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D2 Problem: Laser marking dash number does not match the packing slip.
+D3 Containment: Lot quarantined and re-marked after verification.
+D4 Root cause: Wrong marking program selected; no verification step against the work order.
+D5 Permanent corrective action: Marking program now selected by barcode scan of the work order.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-01-07.
+
+Disposition: rework
+Status: CLOSED

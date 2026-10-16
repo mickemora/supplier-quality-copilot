@@ -1,0 +1,13 @@
+supplier_id,supplier_name,commodity,tier,location,approval_status,annual_spend_band
+SUP-0107,Ardent Interconnect,connectors,1,"Tempe, AZ",approved,$5M-$10M
+SUP-0112,Mesa Contact Systems,connectors,1,"Mesa, AZ",approved,$1M-$5M
+SUP-0131,Northgate Connector Works,connectors,2,"Wichita, KS",approved,$1M-$5M
+SUP-0145,Pinnacle Harness Assemblies,cable assemblies,1,"Huntsville, AL",approved,$5M-$10M
+SUP-0203,Brazos Electronics Assembly,pcba,1,"Waco, TX",approved,$10M-$25M
+SUP-0219,Lone Star Circuit Works,pcba,1,"Plano, TX",conditional,$5M-$10M
+SUP-0301,Red River Castings,castings,2,"Texarkana, TX",approved,$1M-$5M
+SUP-0322,Caddo Precision Machining,machined parts,1,"Shreveport, LA",approved,$5M-$10M
+SUP-0340,Pecos Aero Machining,machined parts,2,"Odessa, TX",probation,$1M-$5M
+SUP-0410,Ironclad Fastener Supply,fasteners,2,"Tulsa, OK",approved,<$1M
+SUP-0455,Skyline Composites,composites,1,"Fort Worth, TX",approved,$5M-$10M
+SUP-0502,Trinity Wire & Cable,wire and cable,2,"Dallas, TX",approved,$1M-$5M

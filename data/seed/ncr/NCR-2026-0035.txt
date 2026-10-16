@@ -1,0 +1,31 @@
+NONCONFORMANCE REPORT
+NCR No.: NCR-2026-0035
+Date detected: 2026-10-01
+Supplier: Mesa Contact Systems (SUP-0112), Mesa, AZ, tier 1
+Commodity: connectors
+Part number: CN-44871-03 - Circular connector, 19-pin, gold-plated contacts
+Program: Program ATLAS
+Detection point: receiving inspection
+Defect code: MRK-03
+Quantity inspected / nonconforming: 12 / 3
+Severity: minor
+Reported by: S. Okafor
+
+DESCRIPTION OF NONCONFORMANCE
+Part marking shows wrong dash number.
+
+CONTAINMENT
+Lot quarantined and re-marked after verification.
+
+8D SUMMARY
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D2 Problem: Part marking shows wrong dash number.
+D3 Containment: Lot quarantined and re-marked after verification.
+D4 Root cause: Operator selected the wrong marking file from the drop-down list.
+D5 Permanent corrective action: Marking program now selected by barcode scan of the work order.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D7 Prevention: process FMEA and control plan updated.
+D8 Closure: SCAR closed 2026-11-28.
+
+Disposition: rework
+Status: CLOSED

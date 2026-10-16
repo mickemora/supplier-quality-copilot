@@ -1,0 +1,19 @@
+{
+  "app": "python3 app.py",
+  "watch": {
+    "include": ["**"],
+    "exclude": ["README.md", "cdk*.json", "**/__pycache__", "tests", "data", ".venv"]
+  },
+  "context": {
+    "prefix": "sqc",
+    "agentModelId": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "extractionModelId": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "embeddingModelId": "amazon.titan-embed-text-v2:0",
+    "embeddingDimensions": 1024,
+    "similarityThreshold": 0.78,
+    "recentWindowDays": 60,
+    "detectorSchedule": "cron(0 11 * * ? *)",
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:target-partitions": ["aws", "aws-us-gov"]
+  }
+}
