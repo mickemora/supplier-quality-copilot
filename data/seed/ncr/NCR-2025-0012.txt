@@ -7,7 +7,7 @@ Part number: CS-21044-00 - Aluminum A356 housing casting
 Program: Program BRAVO-7
 Detection point: receiving inspection
 Defect code: ENV-02
-Quantity inspected / nonconforming: 60 / 20
+Quantity inspected / nonconforming: 160 / 20
 Severity: minor
 Reported by: S. Okafor
 
@@ -17,15 +17,19 @@ White corrosion product on castings after shipment.
 CONTAINMENT
 Cleaned and re-inspected affected parts.
 
+SUPPLIER RESPONSE
+8D response due: 2025-09-09
+8D response received: 2025-08-24
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: White corrosion product on castings after shipment.
 D3 Containment: Cleaned and re-inspected affected parts.
 D4 Root cause: Parts were packed while still damp from washing and sealed without desiccant.
 D5 Permanent corrective action: Added drying oven step and desiccant to the packaging instruction.
 D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-09-13.
+D8 Closure: SCAR closed 2025-09-16.
 
 Disposition: rework
 Status: CLOSED

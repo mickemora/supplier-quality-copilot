@@ -7,9 +7,9 @@ Part number: MP-60498-02 - Bulkhead ring
 Program: Program DELTA RISE
 Detection point: receiving inspection
 Defect code: DOC-02
-Quantity inspected / nonconforming: 360 / 60
+Quantity inspected / nonconforming: 180 / 60
 Severity: major
-Reported by: K. Nguyen
+Reported by: M. Brennan
 
 DESCRIPTION OF NONCONFORMANCE
 Parts machined to superseded drawing revision C instead of revision D.
@@ -17,15 +17,19 @@ Parts machined to superseded drawing revision C instead of revision D.
 CONTAINMENT
 Lot rejected and returned; replacement parts expedited.
 
+SUPPLIER RESPONSE
+8D response due: 2026-09-22
+8D response received: 2026-09-23
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Parts machined to superseded drawing revision C instead of revision D.
 D3 Containment: Lot rejected and returned; replacement parts expedited.
 D4 Root cause: Supplier's document control pulled the drawing from a local copy instead of the controlled portal.
 D5 Permanent corrective action: Removed local drawing copies; CNC programs now reference the controlled revision number checked at first article.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-10-06.
+D8 Closure: SCAR closed 2026-10-14.
 
 Disposition: return to supplier
 Status: CLOSED

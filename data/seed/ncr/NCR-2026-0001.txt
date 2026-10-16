@@ -7,15 +7,19 @@ Part number: PA-90412-01 - Processor card assembly
 Program: Program CORSAIR
 Detection point: final test
 Defect code: ESD-05
-Quantity inspected / nonconforming: 260 / 52
+Quantity inspected / nonconforming: 156 / 52
 Severity: major
-Reported by: R. Patel
+Reported by: T. Lindqvist
 
 DESCRIPTION OF NONCONFORMANCE
 Board failed functional test; ESD damage on input buffer.
 
 CONTAINMENT
 Retest of all boards from the same kit date.
+
+SUPPLIER RESPONSE
+8D response due: 2026-02-10
+8D response received: 2026-01-16
 
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
@@ -25,7 +29,7 @@ D4 Root cause: Relative humidity in the kitting area fell below 30% and ionizers
 D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
 D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-02-13.
+D8 Closure: SCAR closed 2026-02-22.
 
 Disposition: return to supplier
 Status: CLOSED

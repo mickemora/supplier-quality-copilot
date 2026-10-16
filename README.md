@@ -69,7 +69,7 @@ flowchart LR
 | `SqcKnowledge` | S3 vector bucket and index; Bedrock Knowledge Base and S3 data source over `kb/` |
 | `SqcIngest` | Step Functions pipeline (extract, structure, persist, sync KB) triggered by uploads to `incoming/` |
 | `SqcAgent` | Bedrock Agent with 4 tools + knowledge base, Guardrail, agent alias `live`, detector Lambda on a daily schedule |
-| `SqcApp` | Web app on S3 + CloudFront, Cognito user pool with managed login and a `reviewers` group, REST API (Cognito-authorized router Lambda), async chat worker with a DynamoDB jobs table |
+| `SqcApp` | Web app on S3 + CloudFront, Cognito user pool with managed login and a `reviewers` group, REST API (Cognito-authorized router Lambda), async chat worker with a DynamoDB jobs table, supplier risk brief Lambda |
 
 ### Why these choices
 
@@ -133,10 +133,23 @@ Open the `WebUrl`, sign in with the temporary password, and set a permanent one.
 |---|---|
 | **Ask** | Chat with the copilot. Answers cite their NCRs (click one to open the record and source document), and *How I got this answer* lists every step: the SQL it ran, documents it searched, tools it called. |
 | **Patterns** | Cross-supplier root-cause alerts with the generated explanation. *Run detector now* re-runs detection on demand. |
+| **Suppliers** | A scorecard for every supplier (NCRs and critical NCRs over 90 days, open and overdue 8D responses, days to close, on-time 8D rate) with a rule-based risk tag and the reasons behind it. Each supplier has a monthly trend, Paretos of defects and root causes, its NCR list, and a one-click AI risk brief for the next supplier review. |
 | **Upload NCR** | Drag in an NCR, 8D or SCAR and watch it move through reading, structuring, saving and indexing. |
 | **SCAR review** | Drafts the copilot saved. Anyone can edit a pending draft; members of `reviewers` approve or reject it, with name, time and comment recorded. Nothing is sent to a supplier. |
 
 Chat runs asynchronously (submit, then poll), so long multi-tool questions don't hit API Gateway's 29 second limit. The UI is plain HTML, CSS and JavaScript in `web/` with no build step and no third-party scripts; `cdk deploy` publishes it.
+
+## How the supplier risk tag works
+
+The tag is set by published rules, not by AI, so it can be audited. The highest level whose rule fires wins, and every triggered rule is shown as a reason. Thresholds live at the top of `lambdas/common/scorecard.py`.
+
+| Tag | Any of these |
+|---|---|
+| **High risk** | Part of an active cross-supplier root-cause pattern; 2+ critical NCRs in the last 90 days; an open NCR with an overdue 8D response (more than 30 days); supplier on probation |
+| **Watch** | 1 critical NCR in 90 days; 3+ NCRs in 90 days; the same defect code 3+ times in 12 months; average time to close above 45 days; on-time 8D responses below 80%; conditional approval |
+| **Good standing** | None of the above |
+
+The AI risk brief explains the tag for the next supplier review (top issues, whether corrective actions held, shared sub-tier risks, recommended actions), cites every claim to an NCR, and never changes the tag.
 
 ## Demo script
 
@@ -146,8 +159,11 @@ Chat runs asynchronously (submit, then poll), so long multi-tool questions don't
 4. **Patterns**: *Run detector now*. Thin gold plating appears across SUP-0107, SUP-0112 and SUP-0145.
 5. *Ask about this pattern*: the answer cites the closed 8D at SUP-0145 that fixed it last year, and the shared tier-2 plater, Coastal Finishing Co.
 6. *Draft a SCAR*, then **SCAR review**: edit if needed and approve.
+7. **Suppliers**: Mesa Contact Systems is now *High risk* because it joined the plating pattern. Open it and click *Write risk brief* for a cited one-pager for the next supplier review.
 
 To run the demo again, remove the uploaded NCR first: `python scripts/load_data.py reset-demo`. The terminal chat (`python scripts/ask.py`) still works and uses your AWS credentials directly.
+
+Upgrading from Day 2? The synthetic NCRs now include 8D response and closure dates, so after `cdk deploy --all` run `python scripts/load_data.py seed` again (re-ingests the 72 NCRs) and then `python scripts/load_data.py reset-demo`.
 
 To regenerate data for a different date: `python scripts/generate_synthetic_data.py --today 2026-11-01`.
 
@@ -201,7 +217,7 @@ All buckets, including the vector bucket, are removed with their contents.
 
 - [x] Day 1: infrastructure, ingest pipeline, knowledge base, agent with tools, repeat root-cause detector, synthetic data
 - [x] Day 2: web UI (chat with citations and agent steps, pattern inbox, NCR upload, SCAR review and approval), async chat
-- [ ] Day 3: supplier scorecards (trend and Pareto views) and supplier-specific risk briefs
+- [x] Day 3: supplier scorecards with a rule-based risk tag, trend and Pareto views, AI risk briefs
 - [ ] Day 4: evaluation harness (golden questions, citation accuracy, extraction accuracy against generator ground truth)
 
 ## Repo layout
@@ -209,10 +225,10 @@ All buckets, including the vector bucket, are removed with their contents.
 ```
 app.py, cdk.json         CDK app and settings (models, thresholds, schedule)
 stacks/                  Data, Knowledge, Ingest, Agent, App stacks
-lambdas/                 ingest/, agent_tools/, detector/, chat/ (worker), web/ (API), common/
+lambdas/                 ingest/, agent_tools/, detector/, chat/ (worker), web/ (API), briefs/, common/
 web/                     no-build web app (HTML, CSS, JS)
 prompts/                 agent instruction
 scripts/                 data generator, loader, terminal chat
 data/seed, data/demo     generated synthetic corpus
-tests/                   SQL guard, pattern storyline, SCAR file and agent trace tests
+tests/                   SQL guard, pattern storyline, scorecard rules, SCAR file and agent trace tests
 ```

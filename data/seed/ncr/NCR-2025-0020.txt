@@ -7,9 +7,9 @@ Part number: PA-90412-01 - Processor card assembly
 Program: Program DELTA RISE
 Detection point: final test
 Defect code: ESD-05
-Quantity inspected / nonconforming: 328 / 41
+Quantity inspected / nonconforming: 369 / 41
 Severity: major
-Reported by: K. Nguyen
+Reported by: R. Patel
 
 DESCRIPTION OF NONCONFORMANCE
 Intermittent failure traced to ESD damage on an input IC.
@@ -17,15 +17,19 @@ Intermittent failure traced to ESD damage on an input IC.
 CONTAINMENT
 Retest of all boards from the same kit date.
 
+SUPPLIER RESPONSE
+8D response due: 2025-10-31
+8D response received: 2025-10-24
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Intermittent failure traced to ESD damage on an input IC.
 D3 Containment: Retest of all boards from the same kit date.
 D4 Root cause: Ionizer failure in the kitting area combined with low humidity; wrist strap checks were not logged.
 D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-11-13.
+D8 Closure: SCAR closed 2025-11-20.
 
 Disposition: return to supplier
 Status: CLOSED

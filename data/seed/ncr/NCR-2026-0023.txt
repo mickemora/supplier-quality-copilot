@@ -7,9 +7,9 @@ Part number: CS-21044-00 - Aluminum A356 housing casting
 Program: Program CORSAIR
 Detection point: in-process
 Defect code: MAT-03
-Quantity inspected / nonconforming: 12 / 3
+Quantity inspected / nonconforming: 24 / 3
 Severity: major
-Reported by: R. Patel
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Subsurface porosity revealed after machining sealing surface.
@@ -17,15 +17,19 @@ Subsurface porosity revealed after machining sealing surface.
 CONTAINMENT
 X-ray of all castings in WIP; 6 rejected.
 
+SUPPLIER RESPONSE
+8D response due: 2026-08-01
+8D response received: 2026-07-18
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Subsurface porosity revealed after machining sealing surface.
 D3 Containment: X-ray of all castings in WIP; 6 rejected.
 D4 Root cause: Melt degassing time was shortened during a furnace rebuild and hydrogen levels were not verified with reduced pressure testing.
 D5 Permanent corrective action: Reinstated degassing cycle with density index check per heat; added reduced pressure test records to CoC.
 D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-08-16.
+D8 Closure: SCAR closed 2026-08-21.
 
 Disposition: return to supplier
 Status: CLOSED

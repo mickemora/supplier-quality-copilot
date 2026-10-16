@@ -7,15 +7,19 @@ Part number: MP-60311-09 - Actuator housing, 7075-T73
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: DOC-02
-Quantity inspected / nonconforming: 154 / 22
+Quantity inspected / nonconforming: 132 / 22
 Severity: major
-Reported by: S. Okafor
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Hole pattern matches obsolete drawing revision.
 
 CONTAINMENT
 Lot rejected and returned; replacement parts expedited.
+
+SUPPLIER RESPONSE
+8D response due: 2025-11-09
+8D response received: 2025-10-28
 
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
@@ -25,7 +29,7 @@ D4 Root cause: Programmer used an uncontrolled local drawing file that was one r
 D5 Permanent corrective action: Removed local drawing copies; CNC programs now reference the controlled revision number checked at first article.
 D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-12-07.
+D8 Closure: SCAR closed 2025-11-27.
 
 Disposition: return to supplier
 Status: CLOSED

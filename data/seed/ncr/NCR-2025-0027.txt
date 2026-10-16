@@ -7,9 +7,9 @@ Part number: MP-60498-02 - Bulkhead ring
 Program: Program BRAVO-7
 Detection point: receiving inspection
 Defect code: DIM-21
-Quantity inspected / nonconforming: 414 / 46
+Quantity inspected / nonconforming: 368 / 46
 Severity: major
-Reported by: S. Okafor
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Bore diameter oversize by 0.0008 in. on parts machined late in shift.
@@ -17,15 +17,19 @@ Bore diameter oversize by 0.0008 in. on parts machined late in shift.
 CONTAINMENT
 Sorted lot with air gauging; oversize parts rejected.
 
+SUPPLIER RESPONSE
+8D response due: 2025-12-22
+8D response received: 2025-12-07
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Bore diameter oversize by 0.0008 in. on parts machined late in shift.
 D3 Containment: Sorted lot with air gauging; oversize parts rejected.
 D4 Root cause: Spindle thermal growth on a long run; the machine's thermal compensation was disabled after a control update.
 D5 Permanent corrective action: Re-enabled thermal compensation and added an in-process bore check every 10 parts.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-12-24.
+D8 Closure: SCAR closed 2026-01-11.
 
 Disposition: return to supplier
 Status: CLOSED

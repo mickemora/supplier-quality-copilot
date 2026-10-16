@@ -7,15 +7,19 @@ Part number: CN-44871-03 - Circular connector, 19-pin, gold-plated contacts
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: FIN-12
-Quantity inspected / nonconforming: 192 / 48
+Quantity inspected / nonconforming: 336 / 48
 Severity: critical
-Reported by: R. Patel
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Thin gold plating on socket contacts (avg 22 microinches; spec 50 min) found at receiving XRF check.
 
 CONTAINMENT
 Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+SUPPLIER RESPONSE
+8D response due: 2026-11-13
+8D response received: not yet received
 
 INVESTIGATION
 Root cause: Suspected low gold concentration in the plating bath at sub-tier Coastal Finishing Co.; bath analysis frequency was reduced after a volume ramp. Investigation open.

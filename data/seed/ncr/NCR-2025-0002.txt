@@ -7,9 +7,9 @@ Part number: CA-70388-05 - Umbilical cable assembly
 Program: Program ATLAS
 Detection point: in-process
 Defect code: FOD-01
-Quantity inspected / nonconforming: 159 / 53
+Quantity inspected / nonconforming: 265 / 53
 Severity: critical
-Reported by: J. Alvarez
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Foreign object debris (wire clippings) found inside connector backshell.
@@ -17,15 +17,19 @@ Foreign object debris (wire clippings) found inside connector backshell.
 CONTAINMENT
 Opened and inspected all backshells in the lot.
 
+SUPPLIER RESPONSE
+8D response due: 2025-06-03
+8D response received: 2025-05-10
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Foreign object debris (wire clippings) found inside connector backshell.
 D3 Containment: Opened and inspected all backshells in the lot.
 D4 Root cause: Assembler did not perform the FOD inspection before closing the backshell; workstation lacked a FOD mat.
 D5 Permanent corrective action: Added FOD inspection stamp before backshell closure and retrained assemblers.
 D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-06-28.
+D8 Closure: SCAR closed 2025-05-26.
 
 Disposition: rework
 Status: CLOSED

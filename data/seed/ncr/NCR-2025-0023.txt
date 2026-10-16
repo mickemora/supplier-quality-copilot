@@ -7,9 +7,9 @@ Part number: FS-11720-16 - Hi-lok pin, titanium
 Program: Program BRAVO-7
 Detection point: receiving inspection
 Defect code: DOC-06
-Quantity inspected / nonconforming: 70 / 14
+Quantity inspected / nonconforming: 56 / 14
 Severity: minor
-Reported by: T. Lindqvist
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Certificate of conformance missing lot traceability to mill heat.
@@ -17,15 +17,19 @@ Certificate of conformance missing lot traceability to mill heat.
 CONTAINMENT
 Lot held until traceable certifications were provided.
 
+SUPPLIER RESPONSE
+8D response due: 2025-11-16
+8D response received: 2025-10-31
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Certificate of conformance missing lot traceability to mill heat.
 D3 Containment: Lot held until traceable certifications were provided.
 D4 Root cause: Distributor changed its CoC template and dropped the heat lot field.
 D5 Permanent corrective action: Supplier added CoC field checklist; receiving now verifies heat traceability before acceptance.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-12-10.
+D8 Closure: SCAR closed 2025-11-28.
 
 Disposition: pending
 Status: CLOSED

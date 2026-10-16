@@ -9,7 +9,7 @@ Detection point: receiving inspection
 Defect code: MRK-03
 Quantity inspected / nonconforming: 370 / 37
 Severity: minor
-Reported by: T. Lindqvist
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Laser marking dash number does not match the packing slip.
@@ -17,15 +17,19 @@ Laser marking dash number does not match the packing slip.
 CONTAINMENT
 Lot quarantined and re-marked after verification.
 
+SUPPLIER RESPONSE
+8D response due: 2026-01-05
+8D response received: 2025-12-18
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: Laser marking dash number does not match the packing slip.
 D3 Containment: Lot quarantined and re-marked after verification.
 D4 Root cause: Wrong marking program selected; no verification step against the work order.
 D5 Permanent corrective action: Marking program now selected by barcode scan of the work order.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-01-07.
+D8 Closure: SCAR closed 2026-01-10.
 
 Disposition: rework
 Status: CLOSED

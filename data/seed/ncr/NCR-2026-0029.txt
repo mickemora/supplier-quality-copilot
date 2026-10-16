@@ -7,15 +7,19 @@ Part number: PA-90412-01 - Processor card assembly
 Program: Program ATLAS
 Detection point: final test
 Defect code: SLD-08
-Quantity inspected / nonconforming: 72 / 12
+Quantity inspected / nonconforming: 120 / 12
 Severity: critical
-Reported by: R. Patel
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 BGA voids exceed 25% limit on X-ray; intermittent failure at thermal cycling.
 
 CONTAINMENT
 100% X-ray of BGAs on all boards built since the paste change; failing boards reworked.
+
+SUPPLIER RESPONSE
+8D response due: 2026-10-04
+8D response received: 2026-09-16
 
 INVESTIGATION
 Suspected root cause (investigation in progress): New solder paste lot with different flux chemistry was used on the old reflow profile; no profile re-validation after a paste change.

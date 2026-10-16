@@ -7,15 +7,19 @@ Part number: FS-11720-16 - Hi-lok pin, titanium
 Program: Program CORSAIR
 Detection point: receiving inspection
 Defect code: DOC-06
-Quantity inspected / nonconforming: 168 / 42
+Quantity inspected / nonconforming: 336 / 42
 Severity: minor
-Reported by: S. Okafor
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Certificate of conformance missing lot traceability to mill heat.
 
 CONTAINMENT
 Lot held until traceable certifications were provided.
+
+SUPPLIER RESPONSE
+8D response due: 2026-10-13
+8D response received: 2026-09-22
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Distributor changed its CoC template and dropped the heat lot field.

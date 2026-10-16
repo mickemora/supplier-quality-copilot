@@ -7,7 +7,7 @@ Part number: CN-51220-11 - Micro-D connector, 25-position
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: FIN-12
-Quantity inspected / nonconforming: 176 / 44
+Quantity inspected / nonconforming: 308 / 44
 Severity: critical
 Reported by: K. Nguyen
 
@@ -16,6 +16,10 @@ Contacts measured thin on gold: 15-30 microinches vs 50 minimum; nickel underpla
 
 CONTAINMENT
 Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+SUPPLIER RESPONSE
+8D response due: 2026-11-08
+8D response received: not yet received
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Root cause traced to the sub-tier plating source, Coastal Finishing Co.: depleted gold bath (titration weekly, not per shift) and increased rack loading reduced deposit thickness.

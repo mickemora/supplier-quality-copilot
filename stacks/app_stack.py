@@ -29,7 +29,7 @@ from aws_cdk import (
 from constructs import Construct
 
 from stacks.agent_stack import AgentStack
-from stacks.common import python_function
+from stacks.common import bedrock_model_resources, python_function
 from stacks.data_stack import DataStack
 from stacks.ingest_stack import IngestStack
 
@@ -135,6 +135,19 @@ class AppStack(Stack):
             actions=["bedrock:InvokeAgent"], resources=[agent.agent_alias_arn],
         ))
 
+        # ---------------- supplier risk briefs ----------------
+        brief_model = self.node.try_get_context("agentModelId")
+        brief_fn = python_function(self, "SupplierBriefFn", "briefs.handler.handler", timeout=300, env={
+            "LAKE_BUCKET": data.lake_bucket.bucket_name,
+            "BRIEF_MODEL_ID": brief_model,
+        })
+        data.lake_bucket.grant_read(brief_fn, "curated/*")
+        data.lake_bucket.grant_read(brief_fn, "meta/*")
+        data.lake_bucket.grant_read_write(brief_fn, "briefs/*")
+        brief_fn.add_to_role_policy(iam.PolicyStatement(
+            actions=["bedrock:InvokeModel"], resources=bedrock_model_resources(brief_model),
+        ))
+
         # ---------------- web API ----------------
         api_fn = python_function(self, "WebApiFn", "web.api.handler", timeout=29, env={
             "JOBS_TABLE": jobs_table.table_name,
@@ -144,10 +157,14 @@ class AppStack(Stack):
             "CHAT_WORKER_FUNCTION": worker_fn.function_name,
             "DETECTOR_FUNCTION": agent.detector_fn.function_name,
             "REVIEWER_GROUP": REVIEWER_GROUP,
+            "BRIEF_FUNCTION": brief_fn.function_name,
         })
         jobs_table.grant_read_write_data(api_fn)
         worker_fn.grant_invoke(api_fn)
         agent.detector_fn.grant_invoke(api_fn)
+        brief_fn.grant_invoke(api_fn)
+        data.lake_bucket.grant_read(api_fn, "meta/*")
+        data.lake_bucket.grant_read(api_fn, "briefs/*")
         data.lake_bucket.grant_read(api_fn, "curated/*")
         data.lake_bucket.grant_read(api_fn, "kb/*")
         data.lake_bucket.grant_read_write(api_fn, "scar-drafts/*")

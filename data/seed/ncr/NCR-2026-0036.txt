@@ -9,13 +9,17 @@ Detection point: final test
 Defect code: WRK-04
 Quantity inspected / nonconforming: 119 / 17
 Severity: critical
-Reported by: M. Brennan
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Contact pull test failure on crimped contacts.
 
 CONTAINMENT
 All contacts crimped since the tool swap were pull-tested.
+
+SUPPLIER RESPONSE
+8D response due: 2026-11-07
+8D response received: not yet received
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Crimp tool die was the wrong size for the contact after a tool swap.

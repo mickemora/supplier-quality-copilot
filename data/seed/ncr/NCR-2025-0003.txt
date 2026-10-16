@@ -7,7 +7,7 @@ Part number: FS-11720-16 - Hi-lok pin, titanium
 Program: Program DELTA RISE
 Detection point: receiving inspection
 Defect code: DOC-06
-Quantity inspected / nonconforming: 162 / 27
+Quantity inspected / nonconforming: 81 / 27
 Severity: minor
 Reported by: S. Okafor
 
@@ -17,15 +17,19 @@ CoC did not include heat lot traceability.
 CONTAINMENT
 Lot held until traceable certifications were provided.
 
+SUPPLIER RESPONSE
+8D response due: 2025-06-05
+8D response received: 2025-05-23
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: CoC did not include heat lot traceability.
 D3 Containment: Lot held until traceable certifications were provided.
 D4 Root cause: New distributor paperwork omitted mill heat numbers.
 D5 Permanent corrective action: Supplier added CoC field checklist; receiving now verifies heat traceability before acceptance.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-06-19.
+D8 Closure: SCAR closed 2025-06-15.
 
 Disposition: pending
 Status: CLOSED

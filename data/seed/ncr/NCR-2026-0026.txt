@@ -7,9 +7,9 @@ Part number: CA-70215-02 - Harness assembly, guidance section
 Program: Program DELTA RISE
 Detection point: in-process
 Defect code: FOD-01
-Quantity inspected / nonconforming: 14 / 2
+Quantity inspected / nonconforming: 10 / 2
 Severity: critical
-Reported by: T. Lindqvist
+Reported by: R. Patel
 
 DESCRIPTION OF NONCONFORMANCE
 Loose wire strands found trapped in harness backshell.
@@ -17,15 +17,19 @@ Loose wire strands found trapped in harness backshell.
 CONTAINMENT
 Opened and inspected all backshells in the lot.
 
+SUPPLIER RESPONSE
+8D response due: 2026-08-29
+8D response received: 2026-08-06
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Loose wire strands found trapped in harness backshell.
 D3 Containment: Opened and inspected all backshells in the lot.
 D4 Root cause: Backshell closed without FOD check during an overtime shift; FOD control area was not enforced.
 D5 Permanent corrective action: Added FOD inspection stamp before backshell closure and retrained assemblers.
 D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-09-09.
+D8 Closure: SCAR closed 2026-08-28.
 
 Disposition: rework
 Status: CLOSED

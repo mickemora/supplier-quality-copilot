@@ -7,9 +7,9 @@ Part number: CS-21044-00 - Aluminum A356 housing casting
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: ENV-02
-Quantity inspected / nonconforming: 342 / 57
+Quantity inspected / nonconforming: 171 / 57
 Severity: minor
-Reported by: R. Patel
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Surface corrosion found on unpacked castings.
@@ -17,15 +17,19 @@ Surface corrosion found on unpacked castings.
 CONTAINMENT
 Cleaned and re-inspected affected parts.
 
+SUPPLIER RESPONSE
+8D response due: 2025-10-22
+8D response received: 2025-10-04
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: Surface corrosion found on unpacked castings.
 D3 Containment: Cleaned and re-inspected affected parts.
 D4 Root cause: Packaging step sealed parts with residual moisture and no desiccant.
 D5 Permanent corrective action: Added drying oven step and desiccant to the packaging instruction.
 D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-11-07.
+D8 Closure: SCAR closed 2025-10-20.
 
 Disposition: rework
 Status: CLOSED

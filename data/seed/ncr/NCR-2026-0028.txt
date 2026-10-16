@@ -7,15 +7,19 @@ Part number: PA-90577-04 - Power conditioning board
 Program: Program BRAVO-7
 Detection point: final test
 Defect code: ESD-05
-Quantity inspected / nonconforming: 24 / 4
+Quantity inspected / nonconforming: 32 / 4
 Severity: major
-Reported by: K. Nguyen
+Reported by: R. Patel
 
 DESCRIPTION OF NONCONFORMANCE
 Board failed functional test; ESD damage on input buffer.
 
 CONTAINMENT
 Retest of all boards from the same kit date.
+
+SUPPLIER RESPONSE
+8D response due: 2026-10-02
+8D response received: 2026-09-27
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Relative humidity in the kitting area fell below 30% and ionizers were not operating.

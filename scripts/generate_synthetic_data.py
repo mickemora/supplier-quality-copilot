@@ -228,8 +228,27 @@ class Ncr:
     qty: int
 
 
-def render(n: Ncr, rng: random.Random) -> str:
+# Supplier responsiveness: (days to 8D response, days to closure) ranges.
+# A couple of suppliers are deliberately slow so the scorecards have a story.
+RESPONSE_PROFILE = {
+    "SUP-0340": ((28, 50), (70, 120)),   # on probation, slow to respond and close
+    "SUP-0219": ((20, 42), (50, 90)),
+    "SUP-0107": ((14, 36), (40, 70)),
+}
+DEFAULT_PROFILE = ((5, 21), (20, 50))
+RESPONSE_DUE_DAYS = 30
+
+
+def render(n: Ncr, rng: random.Random, today: date | None = None) -> str:
+    today = today or date.today()
     sid, name, commodity, tier, location, *_ = SUPPLIER[n.supplier_id]
+    (r_lo, r_hi), (c_lo, c_hi) = RESPONSE_PROFILE.get(sid, DEFAULT_PROFILE)
+    responded = n.detected + timedelta(days=rng.randint(r_lo, r_hi))
+    closed = max(responded + timedelta(days=3),
+                 n.detected + timedelta(days=rng.randint(c_lo, c_hi)))
+    if closed >= today:
+        closed = today - timedelta(days=1)
+    due = n.detected + timedelta(days=RESPONSE_DUE_DAYS)
     t = n.template
     defect = t.defects[n.variant % len(t.defects)]
     cause = t.causes[n.variant % len(t.causes)]
@@ -257,7 +276,14 @@ def render(n: Ncr, rng: random.Random) -> str:
         "CONTAINMENT",
         t.containment,
         "",
+        "SUPPLIER RESPONSE",
+        f"8D response due: {due.isoformat()}",
     ]
+    if n.status == "closed" or responded < today:
+        lines.append(f"8D response received: {min(responded, closed if n.status == 'closed' else responded).isoformat()}")
+    else:
+        lines.append("8D response received: not yet received")
+    lines.append("")
     if n.status == "closed":
         lines += [
             "8D SUMMARY",
@@ -268,7 +294,7 @@ def render(n: Ncr, rng: random.Random) -> str:
             f"D5 Permanent corrective action: {t.corrective}",
             f"D6 Verification: next {rng.choice([3, 4, 5])} lots inspected with zero rejects; effectiveness verified.",
             "D7 Prevention: process FMEA and control plan updated.",
-            f"D8 Closure: SCAR closed {(n.detected + timedelta(days=rng.randint(30, 60))).isoformat()}.",
+            f"D8 Closure: SCAR closed {closed.isoformat()}.",
             "",
             f"Disposition: {t.disposition}",
             "Status: CLOSED",
@@ -361,8 +387,8 @@ def main() -> None:
             old.unlink()
 
     for n in ncrs:
-        (seed_dir / f"{n.ncr_id}.txt").write_text(render(n, rng))
-    (demo_dir / f"{demo.ncr_id}.txt").write_text(render(demo, rng))
+        (seed_dir / f"{n.ncr_id}.txt").write_text(render(n, rng, today))
+    (demo_dir / f"{demo.ncr_id}.txt").write_text(render(demo, rng, today))
 
     with open(out / "seed" / "suppliers.csv", "w", newline="") as f:
         writer = csv.writer(f)

@@ -7,9 +7,9 @@ Part number: PA-90577-04 - Power conditioning board
 Program: Program ATLAS
 Detection point: final test
 Defect code: ESD-05
-Quantity inspected / nonconforming: 138 / 23
+Quantity inspected / nonconforming: 115 / 23
 Severity: major
-Reported by: M. Brennan
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Intermittent failure traced to ESD damage on an input IC.
@@ -17,15 +17,19 @@ Intermittent failure traced to ESD damage on an input IC.
 CONTAINMENT
 Retest of all boards from the same kit date.
 
+SUPPLIER RESPONSE
+8D response due: 2026-04-26
+8D response received: 2026-04-18
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: Intermittent failure traced to ESD damage on an input IC.
 D3 Containment: Retest of all boards from the same kit date.
 D4 Root cause: Ionizer failure in the kitting area combined with low humidity; wrist strap checks were not logged.
 D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
-D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-05-12.
+D8 Closure: SCAR closed 2026-06-02.
 
 Disposition: return to supplier
 Status: CLOSED

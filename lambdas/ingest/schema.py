@@ -29,6 +29,12 @@ NCR_SCHEMA = {
         "disposition": {"type": "string",
                         "enum": ["use-as-is", "rework", "repair", "scrap", "return to supplier", "pending"]},
         "status": {"type": "string", "enum": ["open", "closed"]},
+        "response_due_at": {"type": "string",
+                            "description": "Date the supplier's 8D response is due, yyyy-mm-dd, or empty"},
+        "response_received_at": {"type": "string",
+                                 "description": "Date the supplier's 8D response was received, yyyy-mm-dd, or empty if not yet received"},
+        "closed_at": {"type": "string",
+                      "description": "Date the NCR/SCAR was closed, yyyy-mm-dd, or empty if still open"},
     },
     "required": [
         "ncr_id", "supplier_id", "supplier_name", "part_number", "commodity", "detected_at",

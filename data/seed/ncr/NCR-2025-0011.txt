@@ -7,9 +7,9 @@ Part number: CA-70215-02 - Harness assembly, guidance section
 Program: Program BRAVO-7
 Detection point: in-process
 Defect code: FOD-01
-Quantity inspected / nonconforming: 18 / 3
+Quantity inspected / nonconforming: 30 / 3
 Severity: critical
-Reported by: M. Brennan
+Reported by: T. Lindqvist
 
 DESCRIPTION OF NONCONFORMANCE
 Foreign object debris (wire clippings) found inside connector backshell.
@@ -17,15 +17,19 @@ Foreign object debris (wire clippings) found inside connector backshell.
 CONTAINMENT
 Opened and inspected all backshells in the lot.
 
+SUPPLIER RESPONSE
+8D response due: 2025-09-09
+8D response received: 2025-08-19
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Foreign object debris (wire clippings) found inside connector backshell.
 D3 Containment: Opened and inspected all backshells in the lot.
 D4 Root cause: Assembler did not perform the FOD inspection before closing the backshell; workstation lacked a FOD mat.
 D5 Permanent corrective action: Added FOD inspection stamp before backshell closure and retrained assemblers.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-09-11.
+D8 Closure: SCAR closed 2025-09-29.
 
 Disposition: rework
 Status: CLOSED

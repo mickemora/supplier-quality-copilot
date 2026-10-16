@@ -7,9 +7,9 @@ Part number: MP-60498-02 - Bulkhead ring
 Program: Program BRAVO-7
 Detection point: receiving inspection
 Defect code: DIM-14
-Quantity inspected / nonconforming: 40 / 5
+Quantity inspected / nonconforming: 30 / 5
 Severity: major
-Reported by: S. Okafor
+Reported by: R. Patel
 
 DESCRIPTION OF NONCONFORMANCE
 Raised burrs found at the intersection of cross-drilled passages.
@@ -17,15 +17,19 @@ Raised burrs found at the intersection of cross-drilled passages.
 CONTAINMENT
 100% re-inspection of stock with borescope; suspect lots quarantined.
 
+SUPPLIER RESPONSE
+8D response due: 2025-10-04
+8D response received: 2025-10-17
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Raised burrs found at the intersection of cross-drilled passages.
 D3 Containment: 100% re-inspection of stock with borescope; suspect lots quarantined.
 D4 Root cause: Operation 40 deburr step was removed during a routing update and the operator was not alerted.
 D5 Permanent corrective action: Restored the deburr operation to the routing with an inspection buyoff; routing changes now need quality sign-off.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-10-28.
+D8 Closure: SCAR closed 2025-12-15.
 
 Disposition: return to supplier
 Status: CLOSED

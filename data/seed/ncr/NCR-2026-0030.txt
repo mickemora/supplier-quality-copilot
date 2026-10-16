@@ -7,15 +7,19 @@ Part number: CN-51220-11 - Micro-D connector, 25-position
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: FIN-12
-Quantity inspected / nonconforming: 130 / 13
+Quantity inspected / nonconforming: 52 / 13
 Severity: critical
-Reported by: J. Alvarez
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 XRF shows contact gold plating at 20 microinches, below the 50 microinch minimum.
 
 CONTAINMENT
 Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
+
+SUPPLIER RESPONSE
+8D response due: 2026-10-12
+8D response received: 2026-10-14
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Tier-2 plater Coastal Finishing Co. allowed gold bath concentration to drift below range; titration interval was extended to weekly when they added a second shift for higher volume.

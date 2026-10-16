@@ -31,5 +31,8 @@ def handler(event, _context):
         schema=NCR_SCHEMA,
     )
     record["quantity_affected"] = int(record.get("quantity_affected") or 0)
+    for key in ("response_due_at", "response_received_at", "closed_at"):
+        value = str(record.get(key) or "").strip()
+        record[key] = value if len(value) == 10 and value[4] == "-" else ""
     record["source_document"] = extracted["source_uri"]
     return record

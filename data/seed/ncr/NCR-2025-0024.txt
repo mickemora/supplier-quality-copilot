@@ -7,9 +7,9 @@ Part number: MP-60498-02 - Bulkhead ring
 Program: Program ATLAS
 Detection point: receiving inspection
 Defect code: DIM-21
-Quantity inspected / nonconforming: 255 / 51
+Quantity inspected / nonconforming: 408 / 51
 Severity: major
-Reported by: R. Patel
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Bore drifted oversize over the course of the production run.
@@ -17,15 +17,19 @@ Bore drifted oversize over the course of the production run.
 CONTAINMENT
 Sorted lot with air gauging; oversize parts rejected.
 
+SUPPLIER RESPONSE
+8D response due: 2025-11-18
+8D response received: 2025-11-19
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
+D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Bore drifted oversize over the course of the production run.
 D3 Containment: Sorted lot with air gauging; oversize parts rejected.
 D4 Root cause: Thermal compensation turned off after a controller software update, letting the bore grow during long runs.
 D5 Permanent corrective action: Re-enabled thermal compensation and added an in-process bore check every 10 parts.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-12-13.
+D8 Closure: SCAR closed 2026-02-14.
 
 Disposition: return to supplier
 Status: CLOSED

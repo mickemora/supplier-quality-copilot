@@ -9,7 +9,7 @@ Detection point: in-process
 Defect code: WRK-15
 Quantity inspected / nonconforming: 77 / 11
 Severity: major
-Reported by: K. Nguyen
+Reported by: M. Brennan
 
 DESCRIPTION OF NONCONFORMANCE
 Conformal coating voids and bubbles near connector headers.
@@ -17,15 +17,19 @@ Conformal coating voids and bubbles near connector headers.
 CONTAINMENT
 Rework of coating on the lot.
 
+SUPPLIER RESPONSE
+8D response due: 2026-07-21
+8D response received: 2026-07-10
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Conformal coating voids and bubbles near connector headers.
 D3 Containment: Rework of coating on the lot.
 D4 Root cause: Spray coating viscosity drifted high and the cure ramp was too fast, trapping solvent.
 D5 Permanent corrective action: Viscosity check per shift and slower cure ramp added to the process sheet.
-D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-08-09.
+D8 Closure: SCAR closed 2026-08-07.
 
 Disposition: rework
 Status: CLOSED

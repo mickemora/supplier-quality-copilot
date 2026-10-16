@@ -7,15 +7,19 @@ Part number: PA-90577-04 - Power conditioning board
 Program: Program ATLAS
 Detection point: in-process
 Defect code: WRK-15
-Quantity inspected / nonconforming: 192 / 48
+Quantity inspected / nonconforming: 288 / 48
 Severity: major
-Reported by: T. Lindqvist
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Conformal coating voids and bubbles near connector headers.
 
 CONTAINMENT
 Rework of coating on the lot.
+
+SUPPLIER RESPONSE
+8D response due: 2026-04-06
+8D response received: 2026-04-07
 
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
@@ -25,7 +29,7 @@ D4 Root cause: Spray coating viscosity drifted high and the cure ramp was too fa
 D5 Permanent corrective action: Viscosity check per shift and slower cure ramp added to the process sheet.
 D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-05-02.
+D8 Closure: SCAR closed 2026-05-23.
 
 Disposition: rework
 Status: CLOSED

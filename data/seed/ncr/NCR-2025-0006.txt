@@ -7,7 +7,7 @@ Part number: CA-70388-05 - Umbilical cable assembly
 Program: Program BRAVO-7
 Detection point: final test
 Defect code: WRK-04
-Quantity inspected / nonconforming: 123 / 41
+Quantity inspected / nonconforming: 369 / 41
 Severity: critical
 Reported by: T. Lindqvist
 
@@ -17,15 +17,19 @@ Contact pull test failure on crimped contacts.
 CONTAINMENT
 All contacts crimped since the tool swap were pull-tested.
 
+SUPPLIER RESPONSE
+8D response due: 2025-06-15
+8D response received: 2025-06-03
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Contact pull test failure on crimped contacts.
 D3 Containment: All contacts crimped since the tool swap were pull-tested.
 D4 Root cause: Crimp tool die was the wrong size for the contact after a tool swap.
 D5 Permanent corrective action: First-piece pull test required after any crimp tool change.
 D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-06-28.
+D8 Closure: SCAR closed 2025-06-20.
 
 Disposition: rework
 Status: CLOSED

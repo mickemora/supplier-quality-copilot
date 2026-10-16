@@ -267,7 +267,7 @@ async function refreshCounts() {
   } catch { /* counts are a convenience */ }
 }
 
-const VIEWS = { ask: renderAsk, alerts: renderAlerts, upload: renderUpload, scars: renderScars };
+const VIEWS = { ask: renderAsk, alerts: renderAlerts, suppliers: renderSuppliers, upload: renderUpload, scars: renderScars };
 
 function route() {
   stopTimers();
@@ -515,7 +515,7 @@ async function drawAlerts() {
         <h2>${esc(a.pattern_label)}</h2>
         <p>${esc(a.summary)}</p>
         <dl class="alert-facts">
-          <div class="fact"><dt>Suppliers</dt><dd class="chips">${a.supplier_ids.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</dd></div>
+          <div class="fact"><dt>Suppliers</dt><dd class="chips">${a.supplier_ids.map((s) => `<a class="chip" href="#/suppliers/${esc(s)}">${esc(s)}</a>`).join("")}</dd></div>
           <div class="fact"><dt>NCRs</dt><dd class="chips">${a.ncr_ids.map(ncrChip).join("")}</dd></div>
           <div class="fact"><dt>Dominant root cause</dt><dd>${esc(a.dominant_root_cause_category)}</dd></div>
           <div class="fact"><dt>Average similarity</dt><dd>${Math.round(a.avg_similarity * 100)}%</dd></div>
@@ -750,6 +750,238 @@ async function openScar(key, editing = false) {
   }));
 }
 
+// ------------------------------------------------------------------ Suppliers
+const RISK_LABEL = { red: "High risk", amber: "Watch", green: "Good standing" };
+const RISK_CLASS = { red: "reject", amber: "hold", green: "accept" };
+const RISK_RANK = { red: 0, amber: 1, green: 2 };
+
+function riskTag(level) {
+  return `<span class="tag ${RISK_CLASS[level] || ""}">${esc(RISK_LABEL[level] || level)}</span>`;
+}
+
+const pct = (v) => (v === null || v === undefined ? "–" : `${Math.round(v * 100)}%`);
+const num = (v) => (v === null || v === undefined ? "–" : String(v));
+
+const SUPPLIER_COLUMNS = [
+  { key: "supplier_name", label: "Supplier", sort: (c) => c.supplier_name },
+  { key: "risk", label: "Risk", sort: (c) => RISK_RANK[c.risk] },
+  { key: "ncr_90d", label: "NCRs, 90 days", num: true, sort: (c) => c.ncr_90d },
+  { key: "critical_90d", label: "Critical, 90 days", num: true, sort: (c) => c.critical_90d },
+  { key: "open", label: "Open", num: true, sort: (c) => c.open },
+  { key: "overdue_responses", label: "Overdue 8D", num: true, sort: (c) => c.overdue_responses },
+  { key: "avg_days_to_close", label: "Days to close", num: true, sort: (c) => c.avg_days_to_close ?? -1 },
+  { key: "on_time_response_rate", label: "On-time 8D", num: true, sort: (c) => c.on_time_response_rate ?? 2 },
+];
+
+function rulesBlock(rules) {
+  return `<details class="rules"><summary>How the risk tag is assigned</summary>
+    <p>Rules, not AI, set the tag so it can be audited. The highest level whose rule fires wins.</p>
+    <div class="rules-grid">
+      <div><span class="tag reject">High risk</span><ul>${rules.red.map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>
+      <div><span class="tag hold">Watch</span><ul>${rules.amber.map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>
+      <div><span class="tag accept">Good standing</span><ul><li>None of the above</li></ul></div>
+    </div></details>`;
+}
+
+function renderSuppliers(args) {
+  if (args[0]) return renderSupplierDetail(args[0]);
+  $("#view").innerHTML = `
+    <div class="view-head"><div><h1>Supplier scorecards</h1>
+      <p>Quality performance for every supplier, with a risk tag set by published rules. Open a supplier for trends, Paretos and an AI risk brief.</p>
+      <p class="meta-line" id="as-of"></p></div></div>
+    <div id="rules"></div>
+    <div class="table-wrap" id="scorecards"><p class="meta-line">Loading scorecards…</p></div>`;
+  api("suppliers").then((data) => {
+    state.scorecards = data;
+    $("#as-of").textContent = `As of ${data.asOf}. Rolling windows: last 90 days and last 12 months.`;
+    $("#rules").innerHTML = rulesBlock(data.rules);
+    drawScorecards();
+  }).catch((err) => { $("#scorecards").innerHTML = `<div class="empty">${esc(err.message)}</div>`; });
+}
+
+function drawScorecards() {
+  const box = $("#scorecards");
+  if (!box || !state.scorecards) return;
+  const sort = state.supplierSort || { key: "risk", dir: 1 };
+  const col = SUPPLIER_COLUMNS.find((c) => c.key === sort.key) || SUPPLIER_COLUMNS[1];
+  const rows = [...state.scorecards.suppliers].sort((a, b) => {
+    const x = col.sort(a), y = col.sort(b);
+    const cmp = typeof x === "string" ? x.localeCompare(y) : x - y;
+    return cmp * sort.dir || RISK_RANK[a.risk] - RISK_RANK[b.risk] || b.critical_90d - a.critical_90d;
+  });
+  const head = SUPPLIER_COLUMNS.map((c) => {
+    const active = c.key === sort.key;
+    const aria = active ? (sort.dir === 1 ? "ascending" : "descending") : "none";
+    return `<th scope="col" class="${c.num ? "num" : ""}" aria-sort="${aria}">
+      <button type="button" data-sort="${c.key}">${esc(c.label)}${active ? (sort.dir === 1 ? " ▲" : " ▼") : ""}</button></th>`;
+  }).join("") + `<th scope="col">Why</th>`;
+  box.innerHTML = `<table class="grid-table scorecard-table">
+    <thead><tr>${head}</tr></thead>
+    <tbody>${rows.map((c) => {
+      const lead = c.reasons[0]?.text || "";
+      const more = c.reasons.length > 1 ? ` <span class="meta-line">+${c.reasons.length - 1} more</span>` : "";
+      return `<tr data-supplier="${esc(c.supplier_id)}" tabindex="0">
+        <td><a href="#/suppliers/${esc(c.supplier_id)}" class="row-link"><b>${esc(c.supplier_name)}</b></a>
+          <div class="meta-line">${esc(c.supplier_id)}, ${esc(c.commodity)}${c.approval_status && c.approval_status !== "approved" ? `, ${esc(c.approval_status)}` : ""}</div></td>
+        <td>${riskTag(c.risk)}</td>
+        <td class="num">${c.ncr_90d}</td>
+        <td class="num">${c.critical_90d || "–"}</td>
+        <td class="num">${c.open || "–"}</td>
+        <td class="num">${c.overdue_responses || "–"}</td>
+        <td class="num">${num(c.avg_days_to_close)}</td>
+        <td class="num">${pct(c.on_time_response_rate)}</td>
+        <td class="why">${esc(lead)}${more}</td></tr>`;
+    }).join("")}</tbody></table>`;
+}
+
+// ---- charts: HTML/CSS marks so text stays readable at every width.
+// Colors come from the validated --chart-* tokens; text uses ink tokens.
+function niceMax(v) {
+  if (v <= 4) return Math.max(v, 1);
+  const step = Math.pow(10, Math.floor(Math.log10(v)));
+  return Math.ceil(v / step) * step;
+}
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function trendChart(trend) {
+  const max = niceMax(Math.max(...trend.map((t) => t.total), 1));
+  const ticks = max <= 4 ? Array.from({ length: max + 1 }, (_, i) => i) : [0, max / 2, max];
+  const peak = trend.reduce((a, b) => (b.total > a.total ? b : a), trend[0]);
+  const cols = trend.map((t, i) => {
+    const [yy, mm] = t.month.split("-").map(Number);
+    const other = t.total - t.critical;
+    const tip = `${MONTHS[mm - 1]} ${yy}: ${t.total} NCR${t.total === 1 ? "" : "s"}, ${t.critical} critical`;
+    const crit = t.critical ? `<span class="seg crit${other ? "" : " top"}" style="height:${(t.critical / max) * 100}%"></span>` : "";
+    const oth = other ? `<span class="seg a top" style="height:${(other / max) * 100}%"></span>` : "";
+    const label = t === peak && t.total ? `<span class="peak" style="bottom:${(t.total / max) * 100}%">${t.total}</span>` : "";
+    const month = (trend.length - 1 - i) % 2 === 0 ? `${MONTHS[mm - 1]}${mm === 1 ? ` ’${String(yy).slice(2)}` : ""}` : "";
+    return `<div class="col" title="${esc(tip)}" role="listitem" aria-label="${esc(tip)}"><div class="stack">${crit}${oth}${label}</div><span class="mon">${month}</span></div>`;
+  }).join("");
+  return `<figure class="chart chart-wide"><figcaption><h3>NCRs by month</h3>
+      <ul class="legend"><li><span class="sw ch-crit-bg"></span>Critical</li><li><span class="sw ch-a-bg"></span>Other</li></ul></figcaption>
+    <div class="cols-chart">
+      <div class="cols-grid">${ticks.map((t) => `<span style="bottom:${(t / max) * 100}%"><em>${t}</em></span>`).join("")}</div>
+      <div class="cols" role="list">${cols}</div>
+    </div></figure>`;
+}
+
+function paretoChart(title, items, note) {
+  if (!items.length) return `<figure class="chart"><figcaption><h3>${esc(title)}</h3></figcaption><p class="meta-line">No NCRs yet.</p></figure>`;
+  const top = items.slice(0, 7);
+  if (items.length > 7) {
+    const rest = items.slice(7);
+    top.push({ label: `Other (${rest.length})`, count: rest.reduce((a, b) => a + b.count, 0), cum_pct: 100 });
+  }
+  const max = Math.max(...top.map((i) => i.count));
+  return `<figure class="chart"><figcaption><h3>${esc(title)}</h3><span class="meta-line">${esc(note)}</span></figcaption>
+    <ol class="pareto">${top.map((it) => `<li title="${esc(`${it.label}: ${it.count} NCR${it.count === 1 ? "" : "s"}, ${it.cum_pct}% cumulative`)}">
+      <span class="p-label">${esc(it.label)}</span>
+      <span class="p-track"><span class="p-bar" style="width:${Math.max(2, (it.count / max) * 100)}%"></span></span>
+      <span class="p-n">${it.count}</span><span class="p-cum">${it.cum_pct}%</span></li>`).join("")}</ol></figure>`;
+}
+
+function briefPanel(d, brief) {
+  if (!brief) {
+    return `<div class="empty"><strong>No risk brief yet</strong>
+      Claude reads this supplier's scorecard and NCRs and writes a one-page brief for the next supplier review, with every claim cited.
+      <p style="margin-top:12px"><button class="btn primary" type="button" id="gen-brief">Write risk brief</button></p></div>`;
+  }
+  if (brief.error) {
+    return `<div class="empty"><strong>The last brief couldn't be written</strong>${esc(brief.error)}
+      <p style="margin-top:12px"><button class="btn primary" type="button" id="gen-brief">Try again</button></p></div>`;
+  }
+  const stale = brief.risk && brief.risk !== d.risk
+    ? `<div class="notice">The risk tag changed since this brief was written (was ${esc(RISK_LABEL[brief.risk])}). Rewrite it before the review.</div>` : "";
+  return `<article class="brief">
+    ${stale}
+    <div class="doc">${linkNcrIds(md(brief.markdown))}</div>
+    <footer class="brief-foot"><span class="meta-line">AI-written from ${brief.ncr_count} NCRs on ${fmtDate(brief.generated_at)}${brief.requested_by ? ` for ${esc(brief.requested_by)}` : ""}. Check cited NCRs before sharing.</span>
+      <button class="btn small" type="button" id="gen-brief">Rewrite brief</button></footer>
+  </article>`;
+}
+
+function linkNcrIds(html) {
+  // Turn [NCR-2026-0031] citations into chips that open the NCR drawer.
+  return html.replace(/\[(NCR-[\w-]+?)\]/g, (_, id) => `<button class="chip cite" type="button" data-ncr="${id}">${id}</button>`);
+}
+
+async function renderSupplierDetail(sid) {
+  $("#view").innerHTML = `<p class="back"><a href="#/suppliers">All suppliers</a></p>
+    <div id="supplier"><p class="meta-line">Loading ${esc(sid)}…</p></div>`;
+  let data;
+  try { data = await api(`suppliers/${encodeURIComponent(sid)}`); } catch (err) {
+    $("#supplier").innerHTML = `<div class="empty">${esc(err.message)}</div>`;
+    return;
+  }
+  drawSupplier(data);
+}
+
+function drawSupplier(data) {
+  const d = data.supplier;
+  const box = $("#supplier");
+  if (!box) return;
+  const facts = [
+    ["NCRs, 12 months", d.ncr_12m], ["Critical, 12 months", d.critical_12m], ["Open now", d.open],
+    ["Overdue 8D responses", d.overdue_responses], ["Average days to close", num(d.avg_days_to_close)],
+    ["On-time 8D responses", pct(d.on_time_response_rate)],
+  ];
+  box.innerHTML = `
+    <header class="supplier-head">
+      <div><h1>${esc(d.supplier_name)}</h1>
+        <p class="meta-line">${esc(d.supplier_id)}, ${esc(d.commodity)}, tier ${esc(d.tier)}, ${esc(d.location)}. Approval: ${esc(d.approval_status)}. As of ${esc(data.asOf)}.</p></div>
+      ${riskTag(d.risk)}
+    </header>
+    <section class="reasons" aria-label="Why this risk tag">
+      <ul>${d.reasons.map((r) => `<li><span class="dot ${RISK_CLASS[r.level]}"></span>${esc(r.text)}</li>`).join("")}</ul>
+    </section>
+    <dl class="facts">${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    <section class="charts">
+      ${trendChart(d.trend)}
+      ${paretoChart("Defects, all time", d.pareto_defects, "Count and cumulative share")}
+      ${paretoChart("Root cause categories", d.pareto_causes, "Count and cumulative share")}
+    </section>
+    <section class="brief-wrap"><div class="section-head"><h2>Risk brief</h2>
+      <span class="meta-line">For the next supplier review</span></div>
+      <div id="brief">${briefPanel(d, data.brief)}</div></section>
+    <section><h2 class="section-title">NCRs</h2>
+      <div class="table-wrap"><table class="grid-table">
+        <thead><tr><th scope="col">NCR</th><th scope="col">Detected</th><th scope="col">Defect</th>
+          <th scope="col">Severity</th><th scope="col">Status</th><th scope="col">8D response</th><th scope="col">Closed</th></tr></thead>
+        <tbody>${d.ncrs.map((n) => `<tr>
+          <td class="nowrap">${ncrChip(n.ncr_id)}</td><td class="nowrap">${esc(n.detected_at)}</td>
+          <td class="defect"><b>${esc(n.defect_code)}</b> ${esc(n.defect_description)}</td>
+          <td>${n.severity === "critical" ? '<span class="tag reject">critical</span>' : esc(n.severity)}</td>
+          <td>${n.status === "closed" ? '<span class="tag accept">closed</span>' : '<span class="tag hold">open</span>'}</td>
+          <td class="nowrap">${esc(n.response_received_at || "not received")}</td><td class="nowrap">${esc(n.closed_at || "–")}</td></tr>`).join("")}</tbody>
+      </table></div></section>`;
+  $("#gen-brief")?.addEventListener("click", () => writeBrief(d.supplier_id));
+}
+
+async function writeBrief(sid) {
+  const btn = $("#gen-brief");
+  if (btn) { btn.disabled = true; btn.textContent = "Writing brief…"; }
+  try {
+    const { startedAt } = await api(`suppliers/${encodeURIComponent(sid)}/brief`, { method: "POST" });
+    const deadline = Date.now() + 3 * 60_000;
+    while (Date.now() < deadline) {
+      await sleep(4000);
+      if (!$("#brief")) return;  // navigated away
+      const data = await api(`suppliers/${encodeURIComponent(sid)}`).catch(() => null);
+      if (data?.brief?.generated_at && data.brief.generated_at >= startedAt.slice(0, 19)) {
+        drawSupplier(data);
+        toast(data.brief.error ? "The brief couldn't be written" : "Risk brief ready");
+        return;
+      }
+    }
+    toast("The brief is taking longer than expected. Reopen this supplier in a minute.");
+  } catch (err) {
+    toast(err.message);
+  }
+  const b = $("#gen-brief");
+  if (b) { b.disabled = false; b.textContent = "Write risk brief"; }
+}
+
 // ------------------------------------------------------------------ global events
 document.addEventListener("click", (e) => {
   const ncr = e.target.closest("[data-ncr]");
@@ -760,11 +992,24 @@ document.addEventListener("click", (e) => {
   if (askBtn) { askAbout(askBtn.dataset.ask); return; }
   const askNcr = e.target.closest("[data-ask-ncr]");
   if (askNcr) { askAbout(`What do we know about ${askNcr.dataset.askNcr}, and has this happened at other suppliers?`); return; }
+  const sortBtn = e.target.closest("[data-sort]");
+  if (sortBtn) {
+    const cur = state.supplierSort || { key: "risk", dir: 1 };
+    state.supplierSort = { key: sortBtn.dataset.sort, dir: cur.key === sortBtn.dataset.sort ? -cur.dir : 1 };
+    drawScorecards();
+    return;
+  }
+  const row = e.target.closest("tr[data-supplier]");
+  if (row && !e.target.closest("a")) { location.hash = `#/suppliers/${row.dataset.supplier}`; return; }
   const scar = e.target.closest("[data-scar]");
   if (scar) { openScar(scar.dataset.scar); return; }
   if (e.target.id === "drawer") closeDrawer();
 });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDrawer(); });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeDrawer();
+  const row = e.target.closest?.("tr[data-supplier]");
+  if (row && e.key === "Enter") location.hash = `#/suppliers/${row.dataset.supplier}`;
+});
 
 // ------------------------------------------------------------------ boot
 async function boot() {

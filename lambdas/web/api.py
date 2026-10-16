@@ -13,6 +13,9 @@ Routes
   GET  /scars/item?key=       one draft
   PUT  /scars/item            edit a pending draft {key, markdown}
   POST /scars/decision        approve/reject {key, decision, comment}   (reviewers group)
+  GET  /suppliers             scorecards with rule-based risk tags + the rules
+  GET  /suppliers/{id}        scorecard, monthly trend, Paretos, NCR list, saved risk brief
+  POST /suppliers/{id}/brief  generate a fresh AI risk brief (async)
 """
 import json
 import logging
@@ -27,8 +30,9 @@ import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
 
-from common import scar_doc
-from common.lake import ALERTS_KEY, load_alerts
+from common import scar_doc, scorecard
+from common.lake import (ALERTS_KEY, load_alerts, load_as_of, load_records,
+                         load_suppliers)
 
 log = logging.getLogger()
 log.setLevel(logging.INFO)
@@ -45,6 +49,7 @@ DOCS = os.environ["DOCS_BUCKET"]
 STATE_MACHINE_ARN = os.environ["STATE_MACHINE_ARN"]
 WORKER_FN = os.environ["CHAT_WORKER_FUNCTION"]
 DETECTOR_FN = os.environ["DETECTOR_FUNCTION"]
+BRIEF_FN = os.environ.get("BRIEF_FUNCTION", "")
 REVIEWER_GROUP = os.environ.get("REVIEWER_GROUP", "reviewers")
 
 UPLOAD_TYPES = {
@@ -52,6 +57,7 @@ UPLOAD_TYPES = {
     "png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg",
 }
 NCR_ID = re.compile(r"^[A-Za-z0-9_.-]{3,64}$")
+SUPPLIER_ID = re.compile(r"^[A-Za-z0-9_-]{2,32}$")
 SCAR_KEY = re.compile(r"^scar-drafts/[A-Za-z0-9_-]+/[A-Za-z0-9_.-]+\.md$")
 PIPELINE_STEPS = ["ExtractText", "StructureRecord", "PersistRecord", "SyncKnowledgeBase"]
 
@@ -297,6 +303,40 @@ def decide_scar(event, user):
     return reply(200, {"key": key, "meta": meta, "markdown": body})
 
 
+# ---------------------------------------------------------------- suppliers
+def _scorecard_inputs():
+    return load_records(s3, LAKE), load_suppliers(s3, LAKE), load_alerts(s3, LAKE), load_as_of(s3, LAKE)
+
+
+def list_suppliers(event, user):
+    records, suppliers, alerts, as_of = _scorecard_inputs()
+    return reply(200, {"asOf": as_of.isoformat(), "rules": scorecard.RULES,
+                       "suppliers": scorecard.scorecards(records, suppliers, alerts, as_of)})
+
+
+def get_supplier(event, user, supplier_id: str):
+    if not SUPPLIER_ID.match(supplier_id):
+        raise HttpError(400, "Bad supplier id")
+    records, suppliers, alerts, as_of = _scorecard_inputs()
+    if not any(s["supplier_id"] == supplier_id for s in suppliers) and \
+            not any(r.get("supplier_id") == supplier_id for r in records):
+        raise HttpError(404, f"{supplier_id} not found")
+    d = scorecard.detail(supplier_id, records, suppliers, alerts, as_of)
+    try:
+        brief = json.loads(s3.get_object(Bucket=LAKE, Key=f"briefs/{supplier_id}/latest.json")["Body"].read())
+    except s3.exceptions.NoSuchKey:
+        brief = None
+    return reply(200, {"asOf": as_of.isoformat(), "rules": scorecard.RULES, "supplier": d, "brief": brief})
+
+
+def generate_brief(event, user, supplier_id: str):
+    if not SUPPLIER_ID.match(supplier_id):
+        raise HttpError(400, "Bad supplier id")
+    lam.invoke(FunctionName=BRIEF_FN, InvocationType="Event",
+               Payload=json.dumps({"supplier_id": supplier_id, "requested_by": user.email}).encode())
+    return reply(202, {"started": True, "startedAt": now_iso()})
+
+
 # ---------------------------------------------------------------- router
 ROUTES = [
     ("GET", re.compile(r"^/me$"), me),
@@ -311,6 +351,9 @@ ROUTES = [
     ("GET", re.compile(r"^/scars/item$"), get_scar),
     ("PUT", re.compile(r"^/scars/item$"), edit_scar),
     ("POST", re.compile(r"^/scars/decision$"), decide_scar),
+    ("GET", re.compile(r"^/suppliers$"), list_suppliers),
+    ("GET", re.compile(r"^/suppliers/([^/]+)$"), get_supplier),
+    ("POST", re.compile(r"^/suppliers/([^/]+)/brief$"), generate_brief),
 ]
 
 

@@ -7,15 +7,19 @@ Part number: PA-90577-04 - Power conditioning board
 Program: Program ATLAS
 Detection point: final test
 Defect code: SLD-08
-Quantity inspected / nonconforming: 126 / 18
+Quantity inspected / nonconforming: 180 / 18
 Severity: critical
-Reported by: J. Alvarez
+Reported by: R. Patel
 
 DESCRIPTION OF NONCONFORMANCE
 Excessive BGA voiding (up to 38%) found by X-ray after a thermal cycling failure.
 
 CONTAINMENT
 100% X-ray of BGAs on all boards built since the paste change; failing boards reworked.
+
+SUPPLIER RESPONSE
+8D response due: 2026-10-28
+8D response received: not yet received
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Reflow profile not re-profiled after switching solder paste lots; insufficient soak traps flux volatiles in BGA joints.

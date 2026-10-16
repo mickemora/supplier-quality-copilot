@@ -47,6 +47,9 @@ NCR_COLUMNS = [
     ("corrective_action", "string", "Corrective / preventive actions"),
     ("disposition", "string", "Use-as-is | Rework | Repair | Scrap | Return to supplier"),
     ("status", "string", "open | closed"),
+    ("response_due_at", "string", "8D response due date, yyyy-mm-dd"),
+    ("response_received_at", "string", "8D response received date, yyyy-mm-dd, empty if not received"),
+    ("closed_at", "string", "Closure date, yyyy-mm-dd, empty if open"),
     ("source_document", "string", "S3 URI of the original document"),
 ]
 

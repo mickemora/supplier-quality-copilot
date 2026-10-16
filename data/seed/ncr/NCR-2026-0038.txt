@@ -7,15 +7,19 @@ Part number: PA-90577-04 - Power conditioning board
 Program: Program DELTA RISE
 Detection point: in-process
 Defect code: WRK-15
-Quantity inspected / nonconforming: 288 / 36
+Quantity inspected / nonconforming: 180 / 36
 Severity: major
-Reported by: T. Lindqvist
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Coating voids around tall components and connector headers.
 
 CONTAINMENT
 Rework of coating on the lot.
+
+SUPPLIER RESPONSE
+8D response due: 2026-11-11
+8D response received: not yet received
 
 INVESTIGATION
 Suspected root cause (investigation in progress): Coating material viscosity out of range and fast cure ramp trapped solvent bubbles.

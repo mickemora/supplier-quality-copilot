@@ -7,9 +7,9 @@ Part number: PA-90412-01 - Processor card assembly
 Program: Program DELTA RISE
 Detection point: final test
 Defect code: ESD-05
-Quantity inspected / nonconforming: 333 / 37
+Quantity inspected / nonconforming: 148 / 37
 Severity: major
-Reported by: R. Patel
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Board failed functional test; ESD damage on input buffer.
@@ -17,15 +17,19 @@ Board failed functional test; ESD damage on input buffer.
 CONTAINMENT
 Retest of all boards from the same kit date.
 
+SUPPLIER RESPONSE
+8D response due: 2025-12-02
+8D response received: 2025-11-11
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Board failed functional test; ESD damage on input buffer.
 D3 Containment: Retest of all boards from the same kit date.
 D4 Root cause: Relative humidity in the kitting area fell below 30% and ionizers were not operating.
 D5 Permanent corrective action: Ionizer preventive maintenance added and humidity alarms installed in kitting.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-12-15.
+D8 Closure: SCAR closed 2025-12-11.
 
 Disposition: return to supplier
 Status: CLOSED

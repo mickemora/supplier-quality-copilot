@@ -71,10 +71,10 @@ class PatternStorylineTests(unittest.TestCase):
         cls.seed_files = []
         for n in ncrs:
             p = out / f"{n.ncr_id}.txt"
-            p.write_text(gen.render(n, rng))
+            p.write_text(gen.render(n, rng, TODAY))
             cls.seed_files.append(p)
         cls.demo_file = out / f"{demo.ncr_id}.txt"
-        cls.demo_file.write_text(gen.render(demo, rng))
+        cls.demo_file.write_text(gen.render(demo, rng, TODAY))
 
     @classmethod
     def tearDownClass(cls):

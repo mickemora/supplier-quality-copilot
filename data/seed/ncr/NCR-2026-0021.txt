@@ -9,7 +9,7 @@ Detection point: receiving inspection
 Defect code: DIM-21
 Quantity inspected / nonconforming: 424 / 53
 Severity: major
-Reported by: T. Lindqvist
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Bore diameter oversize by 0.0008 in. on parts machined late in shift.
@@ -17,15 +17,19 @@ Bore diameter oversize by 0.0008 in. on parts machined late in shift.
 CONTAINMENT
 Sorted lot with air gauging; oversize parts rejected.
 
+SUPPLIER RESPONSE
+8D response due: 2026-07-27
+8D response received: 2026-07-29
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Bore diameter oversize by 0.0008 in. on parts machined late in shift.
 D3 Containment: Sorted lot with air gauging; oversize parts rejected.
 D4 Root cause: Spindle thermal growth on a long run; the machine's thermal compensation was disabled after a control update.
 D5 Permanent corrective action: Re-enabled thermal compensation and added an in-process bore check every 10 parts.
 D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-08-07.
+D8 Closure: SCAR closed 2026-10-14.
 
 Disposition: return to supplier
 Status: CLOSED

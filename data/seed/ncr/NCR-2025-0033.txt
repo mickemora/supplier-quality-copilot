@@ -9,7 +9,7 @@ Detection point: in-process
 Defect code: MAT-03
 Quantity inspected / nonconforming: 48 / 6
 Severity: major
-Reported by: J. Alvarez
+Reported by: S. Okafor
 
 DESCRIPTION OF NONCONFORMANCE
 Gas porosity exposed on O-ring groove after finish machining.
@@ -17,15 +17,19 @@ Gas porosity exposed on O-ring groove after finish machining.
 CONTAINMENT
 X-ray of all castings in WIP; 6 rejected.
 
+SUPPLIER RESPONSE
+8D response due: 2026-01-18
+8D response received: 2026-01-05
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D1 Team: supplier quality, manufacturing engineering, D. Whitfield (SQE)
 D2 Problem: Gas porosity exposed on O-ring groove after finish machining.
 D3 Containment: X-ray of all castings in WIP; 6 rejected.
 D4 Root cause: Rotary degassing cycle was cut short after the furnace rebuild; density index checks were not performed.
 D5 Permanent corrective action: Reinstated degassing cycle with density index check per heat; added reduced pressure test records to CoC.
-D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-01-24.
+D8 Closure: SCAR closed 2026-02-03.
 
 Disposition: return to supplier
 Status: CLOSED

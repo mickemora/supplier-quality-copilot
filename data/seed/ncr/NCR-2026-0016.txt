@@ -7,9 +7,9 @@ Part number: WC-80110-22 - Shielded twisted pair, 22 AWG
 Program: Program CORSAIR
 Detection point: in-process
 Defect code: WRK-09
-Quantity inspected / nonconforming: 32 / 4
+Quantity inspected / nonconforming: 16 / 4
 Severity: major
-Reported by: T. Lindqvist
+Reported by: J. Alvarez
 
 DESCRIPTION OF NONCONFORMANCE
 Conductor strand damage and insulation nicks at strip location.
@@ -17,15 +17,19 @@ Conductor strand damage and insulation nicks at strip location.
 CONTAINMENT
 100% visual inspection under magnification of affected lot.
 
+SUPPLIER RESPONSE
+8D response due: 2026-07-03
+8D response received: 2026-06-19
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: Conductor strand damage and insulation nicks at strip location.
 D3 Containment: 100% visual inspection under magnification of affected lot.
 D4 Root cause: Worn stripper blades with no cycle-count based replacement.
 D5 Permanent corrective action: Cycle-count based blade replacement with automatic stop at limit.
-D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2026-07-12.
+D8 Closure: SCAR closed 2026-07-08.
 
 Disposition: scrap
 Status: CLOSED

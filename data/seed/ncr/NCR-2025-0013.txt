@@ -7,7 +7,7 @@ Part number: FS-11720-16 - Hi-lok pin, titanium
 Program: Program CORSAIR
 Detection point: final test
 Defect code: MEA-07
-Quantity inspected / nonconforming: 180 / 18
+Quantity inspected / nonconforming: 144 / 18
 Severity: critical
 Reported by: T. Lindqvist
 
@@ -17,15 +17,19 @@ Torque audit found collars under minimum installation torque.
 CONTAINMENT
 Re-torque audit of all assemblies built with the tool.
 
+SUPPLIER RESPONSE
+8D response due: 2025-09-28
+8D response received: 2025-09-06
+
 8D SUMMARY
-D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
+D1 Team: supplier quality, manufacturing engineering, A. Romero (SQE)
 D2 Problem: Torque audit found collars under minimum installation torque.
 D3 Containment: Re-torque audit of all assemblies built with the tool.
 D4 Root cause: Out-of-calibration torque tool reading high; calibration recall system missed the tool.
 D5 Permanent corrective action: Tool recalled and calibrated; calibration system now locks out expired tools at check-out.
-D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-10-07.
+D8 Closure: SCAR closed 2025-10-05.
 
 Disposition: rework
 Status: CLOSED

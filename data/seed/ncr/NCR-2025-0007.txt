@@ -7,7 +7,7 @@ Part number: MP-60498-02 - Bulkhead ring
 Program: Program CORSAIR
 Detection point: receiving inspection
 Defect code: DIM-14
-Quantity inspected / nonconforming: 110 / 11
+Quantity inspected / nonconforming: 44 / 11
 Severity: major
 Reported by: S. Okafor
 
@@ -17,15 +17,19 @@ Raised burrs found at the intersection of cross-drilled passages.
 CONTAINMENT
 100% re-inspection of stock with borescope; suspect lots quarantined.
 
+SUPPLIER RESPONSE
+8D response due: 2025-07-02
+8D response received: 2025-07-08
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Raised burrs found at the intersection of cross-drilled passages.
 D3 Containment: 100% re-inspection of stock with borescope; suspect lots quarantined.
 D4 Root cause: Operation 40 deburr step was removed during a routing update and the operator was not alerted.
 D5 Permanent corrective action: Restored the deburr operation to the routing with an inspection buyoff; routing changes now need quality sign-off.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-07-23.
+D8 Closure: SCAR closed 2025-08-17.
 
 Disposition: return to supplier
 Status: CLOSED

@@ -17,15 +17,19 @@ Gold plating thickness on contacts measured 18-24 microinches against a 50 micro
 CONTAINMENT
 Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
 
+SUPPLIER RESPONSE
+8D response due: 2025-10-15
+8D response received: 2025-10-06
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Gold plating thickness on contacts measured 18-24 microinches against a 50 microinch minimum (XRF).
 D3 Containment: Lot quarantined; 100% XRF thickness check on stock and WIP; supplier notified to hold shipments.
 D4 Root cause: Plating is subcontracted to the tier-2 finisher Coastal Finishing Co. Gold bath chemistry drifted low because bath titration was done weekly instead of per shift, and the line ran a higher rack loading after a capacity increase.
 D5 Permanent corrective action: Coastal Finishing Co. moved to per-shift bath titration with control-chart limits and returned to qualified rack loading; supplier added XRF sampling (5 per lot) at its receiving before assembly.
-D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 5 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-11-06.
+D8 Closure: SCAR closed 2025-10-14.
 
 Disposition: return to supplier
 Status: CLOSED

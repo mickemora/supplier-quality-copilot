@@ -54,6 +54,18 @@ def converse_tool(client, model_id: str, system: str, user_text: str, tool_name:
     raise ValueError(f"Model did not call {tool_name}")
 
 
+def converse_text(client, model_id: str, system: str, user_text: str,
+                  max_tokens: int = 2000, temperature: float = 0.2) -> str:
+    response = _call(
+        client.converse,
+        modelId=model_id,
+        system=[{"text": system}],
+        messages=[{"role": "user", "content": [{"text": user_text}]}],
+        inferenceConfig={"maxTokens": max_tokens, "temperature": temperature},
+    )
+    return "".join(b.get("text", "") for b in response["output"]["message"]["content"]).strip()
+
+
 def embed(client, model_id: str, text: str, dimensions: int = 1024) -> list[float]:
     """Titan Text Embeddings V2, normalized."""
     response = _call(

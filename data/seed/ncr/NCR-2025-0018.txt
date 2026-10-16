@@ -7,9 +7,9 @@ Part number: CM-33015-01 - Radome panel, quartz/cyanate ester
 Program: Program BRAVO-7
 Detection point: receiving inspection
 Defect code: MAT-11
-Quantity inspected / nonconforming: 280 / 40
+Quantity inspected / nonconforming: 360 / 40
 Severity: critical
-Reported by: M. Brennan
+Reported by: K. Nguyen
 
 DESCRIPTION OF NONCONFORMANCE
 Delamination detected by ultrasonic inspection near panel edge.
@@ -17,15 +17,19 @@ Delamination detected by ultrasonic inspection near panel edge.
 CONTAINMENT
 Quarantine of panels from the same cure load.
 
+SUPPLIER RESPONSE
+8D response due: 2025-10-23
+8D response received: 2025-10-07
+
 8D SUMMARY
 D1 Team: supplier quality, manufacturing engineering, L. Chen (SQE)
 D2 Problem: Delamination detected by ultrasonic inspection near panel edge.
 D3 Containment: Quarantine of panels from the same cure load.
 D4 Root cause: Autoclave cure ran with a thermocouple lagging the part, so the dwell started before the laminate reached temperature.
 D5 Permanent corrective action: Lagging thermocouple now controls dwell start; cure records reviewed before release.
-D6 Verification: next 3 lots inspected with zero rejects; effectiveness verified.
+D6 Verification: next 4 lots inspected with zero rejects; effectiveness verified.
 D7 Prevention: process FMEA and control plan updated.
-D8 Closure: SCAR closed 2025-11-17.
+D8 Closure: SCAR closed 2025-11-08.
 
 Disposition: scrap
 Status: CLOSED
