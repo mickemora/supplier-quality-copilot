@@ -4,6 +4,36 @@ A gen AI copilot for an aerospace and defense supply chain quality team, built o
 
 > All suppliers, programs, parts and people in this repo are fictional. Deploy and destroy at will in your own AWS account.
 
+![One new defect report, three suppliers, one shared root cause: the copilot connects them and brings back the fix that already worked](docs/use-case.svg)
+
+## The business case in plain terms
+
+**In one line:** the copilot helps a defense manufacturer's supplier quality team catch the same supplier problem showing up at several suppliers, and fix it faster using what already worked before.
+
+### The problem
+
+A company like Lockheed Martin Missiles and Fire Control buys parts from hundreds of suppliers. When a part arrives defective, an engineer writes a nonconformance report (NCR). Those reports pile up as free text across suppliers and years, and no one has time to read them all. So:
+
+- The same root cause can hit three different suppliers (for example, because they all use the same small plating shop), and each problem is handled separately. No one sees the pattern until it hurts delivery.
+- A fix that worked a year ago is buried in an old report, so the team re-investigates from scratch.
+- Writing corrective action requests to suppliers (SCARs) is slow, manual paperwork.
+
+### What the copilot does
+
+1. **Reads every report automatically.** Drop in an NCR and AI turns it into clean, searchable data: what failed, why, and at which supplier.
+2. **Spots repeat problems across suppliers.** It flags when different suppliers share the same failure mechanism and explains why in plain English.
+3. **Answers questions with evidence.** Engineers ask in plain language ("What worked last time?") and every answer links back to the source reports and shows how it was reached.
+4. **Drafts the corrective action request.** An engineer reviews and approves it. Nothing goes to a supplier automatically.
+
+### Why it matters
+
+- **Problems are caught earlier**, before they turn into late deliveries.
+- **Proven fixes are reused** instead of reinvented.
+- **Engineers spend less time on paperwork** and more on engineering.
+- **It's audit-friendly:** every answer is cited and every decision has a named approver, which matters in defense.
+
+The demo shows it in one moment: a single new defect report arrives, and the copilot immediately connects it to two other suppliers and to a fix from last year that nobody remembered.
+
 ## Architecture
 
 ```mermaid
