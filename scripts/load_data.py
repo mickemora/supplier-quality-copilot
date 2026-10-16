@@ -4,6 +4,7 @@
     python scripts/load_data.py seed        # supplier master + all seed NCRs, then run detector
     python scripts/load_data.py demo        # upload the live-demo NCR, then run detector
     python scripts/load_data.py detect      # just run the repeat root-cause detector
+    python scripts/load_data.py reset-demo  # remove the demo NCR so you can upload it again
 
 Each NCR uploaded to ``incoming/`` triggers the ingest state machine. The script waits
 for the executions to finish before running the detector.
@@ -59,9 +60,29 @@ def run_detector(lam, function_name: str) -> None:
     print(json.dumps(json.loads(resp["Payload"].read()), indent=2))
 
 
+def reset_demo(session, out: dict) -> None:
+    """Remove the demo NCR so the live-upload moment can be repeated."""
+    manifest = json.loads((DATA / "seed" / "manifest.json").read_text())
+    ncr = manifest["demo_ncr"]
+    s3 = session.client("s3")
+    lake = out["LakeBucketName"]
+    keys = [f"curated/ncr/{ncr}.json", f"kb/{ncr}.txt", f"kb/{ncr}.txt.metadata.json",
+            f"embeddings/{ncr}.json"]
+    s3.delete_objects(Bucket=lake, Delete={"Objects": [{"Key": k} for k in keys]})
+    print(f"Removed {ncr} from the lake")
+    if "KnowledgeBaseId" in out and "DataSourceId" in out:
+        agent = session.client("bedrock-agent")
+        try:
+            agent.start_ingestion_job(knowledgeBaseId=out["KnowledgeBaseId"],
+                                      dataSourceId=out["DataSourceId"])
+            print("Started a knowledge base sync to drop it from the index")
+        except agent.exceptions.ConflictException:
+            print("A knowledge base sync is already running; it will pick up the removal next time")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["seed", "demo", "detect"])
+    parser.add_argument("action", choices=["seed", "demo", "detect", "reset-demo"])
     parser.add_argument("--region")
     args = parser.parse_args()
 
@@ -74,7 +95,13 @@ def main() -> None:
     session = boto3.session.Session(region_name=args.region)
     s3, sfn, lam = session.client("s3"), session.client("stepfunctions"), session.client("lambda")
 
-    if args.action == "seed":
+    # The detector reads this to measure "recent" from the dataset's as-of date.
+    s3.upload_file(str(DATA / "seed" / "manifest.json"), out["LakeBucketName"],
+                   "meta/manifest.json")
+
+    if args.action == "reset-demo":
+        reset_demo(session, out)
+    elif args.action == "seed":
         s3.upload_file(str(DATA / "seed" / "suppliers.csv"), out["LakeBucketName"],
                        "curated/suppliers/suppliers.csv")
         print("Uploaded supplier master")

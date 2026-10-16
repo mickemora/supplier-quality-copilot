@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supplier Quality Copilot</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M9 3h20v26H9L3 23V9z' fill='%23D99A1E'/%3E%3Ccircle cx='10' cy='16' r='2.5' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="shell" id="shell" hidden>
+    <nav class="rail" aria-label="Main">
+      <a class="brand" href="#/ask">
+        <svg class="brand-tag" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 3h20v26H9L3 23V9z"/><circle cx="10" cy="16" r="2.5"/></svg>
+        <span>Supplier Quality Copilot</span>
+      </a>
+      <ul class="nav">
+        <li><a href="#/ask" data-view="ask">Ask</a></li>
+        <li><a href="#/alerts" data-view="alerts">Patterns <span class="count" id="alert-count" hidden></span></a></li>
+        <li><a href="#/upload" data-view="upload">Upload NCR</a></li>
+        <li><a href="#/scars" data-view="scars">SCAR review <span class="count" id="scar-count" hidden></span></a></li>
+      </ul>
+      <div class="rail-foot">
+        <p class="who" id="who"></p>
+        <button class="link-btn" id="sign-out" type="button">Sign out</button>
+        <p class="note">Synthetic data for demonstration</p>
+      </div>
+    </nav>
+    <main class="main" id="view" tabindex="-1"></main>
+  </div>
+
+  <section class="gate" id="gate" hidden>
+    <div class="gate-card">
+      <svg class="gate-tag" viewBox="0 0 32 32" aria-hidden="true"><path d="M9 3h20v26H9L3 23V9z"/><circle cx="10" cy="16" r="2.5"/></svg>
+      <h1>Supplier Quality Copilot</h1>
+      <p id="gate-msg">Investigate nonconformances, catch repeat root causes across suppliers, and review SCAR drafts.</p>
+      <button class="btn primary" id="sign-in" type="button">Sign in</button>
+    </div>
+  </section>
+
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-title">
+    <div class="drawer-panel" role="dialog" aria-modal="true">
+      <header class="drawer-head">
+        <h2 id="drawer-title">NCR</h2>
+        <button class="icon-btn" id="drawer-close" type="button" aria-label="Close">&times;</button>
+      </header>
+      <div class="drawer-body" id="drawer-body"></div>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

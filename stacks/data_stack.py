@@ -87,7 +87,18 @@ class DataStack(Stack):
         )
 
         self.docs_bucket = s3.Bucket(
-            self, "DocsBucket", event_bridge_enabled=True, versioned=False, **common
+            self,
+            "DocsBucket",
+            event_bridge_enabled=True,
+            versioned=False,
+            # The web UI uploads straight to incoming/ with presigned PUT URLs.
+            cors=[s3.CorsRule(
+                allowed_methods=[s3.HttpMethods.PUT],
+                allowed_origins=["*"],
+                allowed_headers=["Content-Type"],
+                max_age=3000,
+            )],
+            **common,
         )
         self.lake_bucket = s3.Bucket(self, "LakeBucket", **common)
         self.athena_results_bucket = s3.Bucket(

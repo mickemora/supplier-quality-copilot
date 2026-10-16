@@ -30,7 +30,7 @@ agent = AgentStack(
     app, "SqcAgent", prefix=prefix, data=data, knowledge=knowledge, env=env
 )
 
-AppStack(app, "SqcApp", prefix=prefix, agent=agent, env=env)
+AppStack(app, "SqcApp", prefix=prefix, data=data, ingest=ingest, agent=agent, env=env)
 
 cdk.Tags.of(app).add("Project", "supplier-quality-copilot")
 cdk.Tags.of(app).add("DataClassification", "synthetic")

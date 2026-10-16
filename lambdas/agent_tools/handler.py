@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 import boto3
 
 from agent_tools.sql_guard import UnsafeQuery, validate
+from common import scar_doc
 from common.athena import QueryFailed, run_query
 from common.lake import load_alerts, load_embeddings
 from common.similarity import top_k_similar
@@ -71,18 +72,16 @@ def save_scar_draft(p: dict) -> dict:
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:50]
     now = datetime.now(timezone.utc)
     key = f"scar-drafts/{supplier}/{now:%Y%m%dT%H%M%SZ}-{slug}.md"
-    front_matter = (
-        "---\n"
-        f"title: {json.dumps(title)}\n"
-        f"supplier_id: {supplier}\n"
-        f"ncr_ids: {json.dumps([n.strip() for n in (p.get('ncr_ids') or '').split(',') if n.strip()])}\n"
-        "status: PENDING_REVIEW\n"
-        f"drafted_at: {now.isoformat()}\n"
-        "drafted_by: supplier-quality-copilot (AI draft - requires SQE approval)\n"
-        "---\n\n"
-    )
+    meta = {
+        "title": title,
+        "supplier_id": supplier,
+        "ncr_ids": [n.strip() for n in (p.get("ncr_ids") or "").split(",") if n.strip()],
+        "status": scar_doc.PENDING,
+        "drafted_at": now.isoformat(timespec="seconds"),
+        "drafted_by": "supplier-quality-copilot (AI draft - requires SQE approval)",
+    }
     s3.put_object(Bucket=LAKE_BUCKET, Key=key,
-                  Body=(front_matter + (p.get("markdown") or "")).encode(),
+                  Body=scar_doc.render(meta, p.get("markdown") or "").encode(),
                   ContentType="text/markdown")
     return {"saved": f"s3://{LAKE_BUCKET}/{key}", "status": "PENDING_REVIEW",
             "note": "Draft saved for supplier quality engineer review. Nothing was sent."}

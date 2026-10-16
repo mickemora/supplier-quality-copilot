@@ -24,7 +24,13 @@ flowchart LR
     A -->|find_similar_ncrs| E
     A -->|retrieve + cite| KB
     A -->|save_scar_draft| SD[(scar-drafts/<br/>PENDING_REVIEW)]
-    UI[Cognito + API Gateway /chat<br/>or scripts/ask.py] --> A
+    W[Web app<br/>S3 + CloudFront] -->|Cognito sign-in| API[API Gateway<br/>+ router Lambda]
+    API -->|async job| Q[(DynamoDB<br/>chat jobs)]
+    API --> WK[Chat worker] --> A
+    API -->|presigned PUT| D
+    API --> SD
+    API --> AL
+    CLI[scripts/ask.py] --> A
 ```
 
 | Stack | What it creates |
@@ -33,7 +39,7 @@ flowchart LR
 | `SqcKnowledge` | S3 vector bucket and index; Bedrock Knowledge Base and S3 data source over `kb/` |
 | `SqcIngest` | Step Functions pipeline (extract, structure, persist, sync KB) triggered by uploads to `incoming/` |
 | `SqcAgent` | Bedrock Agent with 4 tools + knowledge base, Guardrail, agent alias `live`, detector Lambda on a daily schedule |
-| `SqcApp` | Cognito user pool, `POST /chat` REST API with Cognito authorizer |
+| `SqcApp` | Web app on S3 + CloudFront, Cognito user pool with managed login and a `reviewers` group, REST API (Cognito-authorized router Lambda), async chat worker with a DynamoDB jobs table |
 
 ### Why these choices
 
@@ -69,39 +75,68 @@ cdk synth
 cdk deploy --all --require-approval never
 ```
 
-## Load data and run the demo
+## Load data and create your sign-in
 
 ```bash
 python scripts/load_data.py seed     # ~5-10 min: 72 NCRs through the pipeline, then detector
-python scripts/ask.py                # chat in your terminal
 ```
 
-Suggested script:
+Create a user for the web app and make them a SCAR reviewer (values come from the `SqcApp` stack outputs):
 
-1. *"Which suppliers had the most critical NCRs in the last 90 days?"* (Athena, structured)
-2. *"Are there any repeat root causes across suppliers right now?"* (only BGA voiding)
-3. Upload the new NCR: `python scripts/load_data.py demo`
-4. Ask again. The gold plating pattern now appears across SUP-0107, SUP-0112 and SUP-0145.
-5. *"What worked last time this happened, and which other suppliers use Coastal Finishing?"* (knowledge base, cites the closed 8D)
-6. *"Draft a SCAR to Mesa Contact Systems for NCR-2026-0039 using the earlier fix as the expected corrective action."* (saved to `scar-drafts/` as PENDING_REVIEW)
+```bash
+POOL=$(aws cloudformation describe-stacks --stack-name SqcApp \
+  --query "Stacks[0].Outputs[?OutputKey=='UserPoolId'].OutputValue" --output text)
+aws cognito-idp admin-create-user --user-pool-id $POOL --username you@example.com \
+  --user-attributes Name=email,Value=you@example.com Name=email_verified,Value=true \
+  --temporary-password 'TempPassw0rd!x' --message-action SUPPRESS
+aws cognito-idp admin-add-user-to-group --user-pool-id $POOL --username you@example.com \
+  --group-name reviewers
+aws cloudformation describe-stacks --stack-name SqcApp \
+  --query "Stacks[0].Outputs[?OutputKey=='WebUrl'].OutputValue" --output text
+```
+
+Open the `WebUrl`, sign in with the temporary password, and set a permanent one.
+
+## The web app
+
+| View | What it does |
+|---|---|
+| **Ask** | Chat with the copilot. Answers cite their NCRs (click one to open the record and source document), and *How I got this answer* lists every step: the SQL it ran, documents it searched, tools it called. |
+| **Patterns** | Cross-supplier root-cause alerts with the generated explanation. *Run detector now* re-runs detection on demand. |
+| **Upload NCR** | Drag in an NCR, 8D or SCAR and watch it move through reading, structuring, saving and indexing. |
+| **SCAR review** | Drafts the copilot saved. Anyone can edit a pending draft; members of `reviewers` approve or reject it, with name, time and comment recorded. Nothing is sent to a supplier. |
+
+Chat runs asynchronously (submit, then poll), so long multi-tool questions don't hit API Gateway's 29 second limit. The UI is plain HTML, CSS and JavaScript in `web/` with no build step and no third-party scripts; `cdk deploy` publishes it.
+
+## Demo script
+
+1. **Ask**: *"Which suppliers had the most critical NCRs in the last 90 days?"* Open *How I got this answer* to show the SQL.
+2. **Patterns**: only BGA voiding is active.
+3. **Upload NCR**: drop `data/demo/NCR-2026-0039.txt` (Mesa Contact Systems) and watch the pipeline.
+4. **Patterns**: *Run detector now*. Thin gold plating appears across SUP-0107, SUP-0112 and SUP-0145.
+5. *Ask about this pattern*: the answer cites the closed 8D at SUP-0145 that fixed it last year, and the shared tier-2 plater, Coastal Finishing Co.
+6. *Draft a SCAR*, then **SCAR review**: edit if needed and approve.
+
+To run the demo again, remove the uploaded NCR first: `python scripts/load_data.py reset-demo`. The terminal chat (`python scripts/ask.py`) still works and uses your AWS credentials directly.
 
 To regenerate data for a different date: `python scripts/generate_synthetic_data.py --today 2026-11-01`.
 
-## Calling the API
+## Calling the API directly
 
 ```bash
-aws cognito-idp admin-create-user --user-pool-id <UserPoolId> --username you@example.com \
-  --temporary-password 'TempPassw0rd!x' --message-action SUPPRESS
-aws cognito-idp admin-set-user-password --user-pool-id <UserPoolId> --username you@example.com \
-  --password '<YourPassw0rd!x>' --permanent
-TOKEN=$(aws cognito-idp initiate-auth --client-id <UserPoolClientId> --auth-flow USER_PASSWORD_AUTH \
+CLIENT=$(aws cloudformation describe-stacks --stack-name SqcApp \
+  --query "Stacks[0].Outputs[?OutputKey=='UserPoolClientId'].OutputValue" --output text)
+API=$(aws cloudformation describe-stacks --stack-name SqcApp \
+  --query "Stacks[0].Outputs[?OutputKey=='ApiUrl'].OutputValue" --output text)
+TOKEN=$(aws cognito-idp initiate-auth --client-id $CLIENT --auth-flow USER_PASSWORD_AUTH \
   --auth-parameters USERNAME=you@example.com,PASSWORD='<YourPassw0rd!x>' \
   --query AuthenticationResult.IdToken --output text)
-curl -X POST "<ChatApiUrl>" -H "Authorization: $TOKEN" -H "Content-Type: application/json" \
-  -d '{"question": "Summarize open critical NCRs"}'
+curl -s -X POST "${API}chat" -H "Authorization: $TOKEN" -H "Content-Type: application/json" \
+  -d '{"question": "Summarize open critical NCRs"}'          # -> {"jobId": ...}
+curl -s "${API}chat/<jobId>" -H "Authorization: $TOKEN"       # poll until status is DONE
 ```
 
-API Gateway caps requests at 29 seconds; long multi-tool questions are better asked through `scripts/ask.py` until the UI moves to streaming.
+Routes: `GET /me`, `POST /chat`, `GET /chat/{jobId}`, `GET /alerts`, `POST /alerts/run`, `POST /uploads`, `GET /uploads/status?key=`, `GET /ncrs/{id}`, `GET /scars`, `GET|PUT /scars/item`, `POST /scars/decision`.
 
 ## Tuning the detector
 
@@ -135,7 +170,7 @@ All buckets, including the vector bucket, are removed with their contents.
 ## Roadmap
 
 - [x] Day 1: infrastructure, ingest pipeline, knowledge base, agent with tools, repeat root-cause detector, synthetic data
-- [ ] Day 2: web UI (chat with citations, alert inbox, SCAR draft review and approve)
+- [x] Day 2: web UI (chat with citations and agent steps, pattern inbox, NCR upload, SCAR review and approval), async chat
 - [ ] Day 3: supplier scorecards (trend and Pareto views) and supplier-specific risk briefs
 - [ ] Day 4: evaluation harness (golden questions, citation accuracy, extraction accuracy against generator ground truth)
 
@@ -144,9 +179,10 @@ All buckets, including the vector bucket, are removed with their contents.
 ```
 app.py, cdk.json         CDK app and settings (models, thresholds, schedule)
 stacks/                  Data, Knowledge, Ingest, Agent, App stacks
-lambdas/                 ingest/, agent_tools/, detector/, chat/, common/
+lambdas/                 ingest/, agent_tools/, detector/, chat/ (worker), web/ (API), common/
+web/                     no-build web app (HTML, CSS, JS)
 prompts/                 agent instruction
 scripts/                 data generator, loader, terminal chat
 data/seed, data/demo     generated synthetic corpus
-tests/                   SQL guard and pattern storyline tests
+tests/                   SQL guard, pattern storyline, SCAR file and agent trace tests
 ```

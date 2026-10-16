@@ -29,6 +29,7 @@ LAKE_BUCKET = os.environ["LAKE_BUCKET"]
 MODEL_ID = os.environ["SUMMARY_MODEL_ID"]
 THRESHOLD = float(os.environ.get("SIMILARITY_THRESHOLD", "0.78"))
 WINDOW = int(os.environ.get("RECENT_WINDOW_DAYS", "60"))
+MANIFEST_KEY = "meta/manifest.json"
 
 SUMMARY_SCHEMA = {
     "type": "object",
@@ -76,11 +77,27 @@ def _similarity_stats(items: list[dict]) -> dict:
             "max": round(scores[-1], 3)}
 
 
+def _as_of(event: dict) -> date:
+    """Date the "recent window" is measured from.
+
+    Payload ``today`` wins; otherwise the synthetic dataset's as-of date
+    (``meta/manifest.json``, uploaded by load_data.py) so the demo storyline holds
+    no matter when it runs; otherwise the real date.
+    """
+    if event.get("today"):
+        return date.fromisoformat(event["today"])
+    try:
+        manifest = json.loads(s3.get_object(Bucket=LAKE_BUCKET, Key=MANIFEST_KEY)["Body"].read())
+        return date.fromisoformat(manifest["as_of"])
+    except Exception:
+        return date.today()
+
+
 def handler(event, _context):
     event = event if isinstance(event, dict) else {}
     threshold = float(event.get("threshold", THRESHOLD))
     window = int(event.get("recent_window_days", WINDOW))
-    today = date.fromisoformat(event["today"]) if event.get("today") else date.today()
+    today = _as_of(event)
 
     items = load_embeddings(s3, LAKE_BUCKET)
     stats = _similarity_stats(items)

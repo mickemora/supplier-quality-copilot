@@ -216,6 +216,7 @@ class AgentStack(Stack):
             },
         )
         data.lake_bucket.grant_read(detector_fn, "embeddings/*")
+        data.lake_bucket.grant_read(detector_fn, "meta/*")
         data.lake_bucket.grant_read_write(detector_fn, "curated/alerts/*")
         detector_fn.add_to_role_policy(iam.PolicyStatement(
             actions=["bedrock:InvokeModel"],
