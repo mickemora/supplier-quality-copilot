@@ -177,8 +177,8 @@ class AppStack(Stack):
             ),
         )
         # Let the browser read error bodies from auth failures and throttling.
-        for rid, rtype in (("Default4xx", apigw.ResponseType.DEFAULT_4XX),
-                           ("Default5xx", apigw.ResponseType.DEFAULT_5XX)):
+        for rid, rtype in (("Default4xx", apigw.ResponseType.DEFAULT_4_XX),
+                           ("Default5xx", apigw.ResponseType.DEFAULT_5_XX)):
             api.add_gateway_response(rid, type=rtype, response_headers={
                 "Access-Control-Allow-Origin": "'*'",
                 "Access-Control-Allow-Headers": "'Authorization,Content-Type'",
