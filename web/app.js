@@ -238,7 +238,11 @@ async function api(path, { method = "GET", body } = {}) {
     showGate("Your session ended. Sign in again to continue.");
     throw new Error("signed out");
   }
-  if (!res.ok) throw new Error(data.error || data.message || `Request failed (${res.status})`);
+  if (!res.ok) {
+    const err = new Error(`${data.error || data.message || "Request failed"} (HTTP ${res.status} on ${method} /${path.replace(/^\//, "").split("?")[0]})`);
+    err.status = res.status;
+    throw err;
+  }
   return data;
 }
 
@@ -451,9 +455,18 @@ async function ask(question) {
     const job = await api("chat", { method: "POST", body: { question, sessionId: state.sessionId } });
     state.sessionId = job.sessionId;
     sessionStorage.setItem("sqc.session", job.sessionId);
+    let misses = 0;
     for (;;) {
       await sleep(2000);
-      const r = await api(`chat/${job.jobId}`);
+      let r;
+      try {
+        r = await api(`chat/${job.jobId}`);
+        misses = 0;
+      } catch (err) {
+        // Ride out brief network or gateway errors while the agent keeps working.
+        if (err.message === "signed out" || ++misses > 3) throw err;
+        continue;
+      }
       bot.elapsed = Math.round((Date.now() - started) / 1000);
       if (r.status === "DONE") { Object.assign(bot, r, { status: "done" }); break; }
       if (r.status === "ERROR") { Object.assign(bot, { status: "error", error: r.error }); break; }
