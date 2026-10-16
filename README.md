@@ -12,7 +12,7 @@ A gen AI copilot for an aerospace and defense supply chain quality team, built o
 
 ### The problem
 
-A company like Lockheed Martin Missiles and Fire Control buys parts from hundreds of suppliers. When a part arrives defective, an engineer writes a nonconformance report (NCR). Those reports pile up as free text across suppliers and years, and no one has time to read them all. So:
+A defense company buys parts from hundreds of suppliers. When a part arrives defective, an engineer writes a nonconformance report (NCR). Those reports pile up as free text across suppliers and years, and no one has time to read them all. So:
 
 - The same root cause can hit three different suppliers (for example, because they all use the same small plating shop), and each problem is handled separately. No one sees the pattern until it hurts delivery.
 - A fix that worked a year ago is buried in an old report, so the team re-investigates from scratch.
