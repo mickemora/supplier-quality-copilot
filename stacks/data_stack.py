@@ -142,7 +142,7 @@ class DataStack(Stack):
 
         CfnOutput(self, "DocsBucketName", value=self.docs_bucket.bucket_name)
         CfnOutput(self, "LakeBucketName", value=self.lake_bucket.bucket_name)
-        CfnOutput(self, "AthenaWorkgroup", value=self.athena_workgroup_name)
+        CfnOutput(self, "AthenaWorkgroupName", value=self.athena_workgroup_name)
 
     def _table(self, cid, database, name, columns, location, serde, description,
                serde_params=None, table_params=None):
@@ -173,5 +173,5 @@ class DataStack(Stack):
                 ),
             ),
         )
-        table.add_dependency(database)
+        table.node.add_dependency(database)
         return table

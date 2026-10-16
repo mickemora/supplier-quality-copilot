@@ -48,7 +48,7 @@ class KnowledgeStack(Stack):
                 non_filterable_metadata_keys=["AMAZON_BEDROCK_TEXT", "AMAZON_BEDROCK_METADATA"]
             ),
         )
-        index.add_dependency(vector_bucket)
+        index.node.add_dependency(vector_bucket)
 
         kb_role = iam.Role(
             self,
@@ -104,7 +104,7 @@ class KnowledgeStack(Stack):
             ),
         )
         kb.node.add_dependency(kb_role)
-        kb.add_dependency(index)
+        kb.node.add_dependency(index)
 
         data_source = bedrock.CfnDataSource(
             self,
